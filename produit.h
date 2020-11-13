@@ -11,28 +11,35 @@ namespace vente{
 
     public :
     //Constructeurs de la classe Produit
-    Produit(string name);
-    Produit(string name, int quantity, double price);
-    Produit(string name, string description, int quantity, double price);
+    Produit(std::string name);
+    Produit(std::string name, int quantity, double price);
+    Produit(std::string name, std::string description, int quantity, double price);
 
     //Accesseurs des attributs de la classe Produit
-    void setDescription(string description);
+    void setDescription(std::string description);
     void setPrice(double price);
     void setQuantity(int quantity);
 
+<<<<<<< Updated upstream
     string getName() const;
     string getDescription() const;
     int getQuantity() const;
     double getPrice() const;
+=======
+    std::string getName();
+    std::string getDescription();
+    int getQuantity();
+    double getPrice();
+>>>>>>> Stashed changes
 
     //Surcharge de l'opérateur << pour afficher le produit
     friend ostream& operator << (ostream &flux, const Produit& p);
 
     private :
     //Nom du produit
-    string _name;
+    std::string _name;
     //Description du produit
-    string _description;
+    std::string _description;
     //Quantité disponible en stock
     int _quantity;
     //Prix unitaire du produit TTC

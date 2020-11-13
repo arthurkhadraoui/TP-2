@@ -1,9 +1,10 @@
 #include "magasin.h"
 
-using vente::magasin;
+using vente::Magasin;
 
 int main()
 {
 	Magasin easyStore;
+	easyStore.displayAllProducts();
 	return 0;
 }
