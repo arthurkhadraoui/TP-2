@@ -2,6 +2,7 @@
 #define PRODUIT_H
 
 #include <iostream>
+using namespace std;
 
 namespace vente{
 
@@ -24,7 +25,7 @@ namespace vente{
     double getPrice();
 
     //Surcharge de l'opérateur << pour afficher le produit
-    ostream& operator<<(ostream &flux, Produit const& p);
+    friend ostream& operator<<(ostream &flux, Produit const& p);
 
     private :
     //Nom du produit

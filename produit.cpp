@@ -23,30 +23,30 @@ namespace vente{
   }
 
   void Produit::setPrice(double price){
-
+    _price = price;
   }
 
-  string getName(){
+  string Produit::getName(){
     return _name;
   }
 
-  string getDescription(){
+  string Produit::getDescription(){
     return _description;
   }
 
-  int getQuantity(){
+  int Produit::getQuantity(){
     return _quantity;
   }
 
-  double getPrice(){
+  double Produit::getPrice(){
     return _price;
   }
 
   string Produit::display(){
-    return (getName() + "\n" + getDescription() + "\n" + getPrice() + "€ | " + getQuantity() + " exemplaire\n");
+    return (getName() << "\n" << getDescription() << "\n" << getPrice() << "€ | " << getQuantity() << " exemplaire\n");
   }
 
-  ostream& operator<<(ostrame &flux, Produit const& p){
+  ostream& Produit::operator<<(ostrame &flux, Produit const& p){
     p.display();
     return flux;
   }
