@@ -23,7 +23,8 @@ namespace vente{
     int getQuantity();
     double getPrice();
 
-    
+    //Surcharge de l'opérateur << pour afficher le produit
+    ostream& operator<<(ostream &flux, Produit const& p);
 
     private :
     //Nom du produit
@@ -34,6 +35,9 @@ namespace vente{
     int _quantity;
     //Prix unitaire du produit TTC
     double _price;
+
+    //fonction d'affichage pour la surcharge d'opérateur
+    string display();
 
   };
 }
