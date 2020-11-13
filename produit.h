@@ -2,6 +2,7 @@
 #define PRODUIT_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 namespace vente{
