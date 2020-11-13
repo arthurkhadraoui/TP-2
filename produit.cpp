@@ -46,7 +46,7 @@ namespace vente{
     return (getName() + "\n" + getDescription() + "\n" + to_string(getPrice()) + "€ | " + to_string(getQuantity()) + " exemplaire\n");
   }
 
-  ostream& Produit::operator<<(ostrame &flux, Produit const& p){
+  ostream& operator << (ostream &flux, Produit const& p){
     p.display();
     return flux;
   }
