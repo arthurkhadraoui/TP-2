@@ -26,28 +26,28 @@ namespace vente{
     _price = price;
   }
 
-  string Produit::getName(){
+  string Produit::getName() const{
     return _name;
   }
 
-  string Produit::getDescription(){
+  string Produit::getDescription() const{
     return _description;
   }
 
-  int Produit::getQuantity(){
+  int Produit::getQuantity() const{
     return _quantity;
   }
 
-  double Produit::getPrice(){
+  double Produit::getPrice() const{
     return _price;
   }
 
-  string Produit::display(){
+  string Produit::display() const{
     return (getName() + "\n" + getDescription() + "\n" + to_string(getPrice()) + "€ | " + to_string(getQuantity()) + " exemplaire\n");
   }
 
-  ostream& operator << (ostream &flux, Produit const& p){
-    p.display();
+  ostream& operator << (ostream &flux, const Produit& p){
+    flux << p.display();
     return flux;
   }
 

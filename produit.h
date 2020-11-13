@@ -20,13 +20,13 @@ namespace vente{
     void setPrice(double price);
     void setQuantity(int quantity);
 
-    string getName();
-    string getDescription();
-    int getQuantity();
-    double getPrice();
+    string getName() const;
+    string getDescription() const;
+    int getQuantity() const;
+    double getPrice() const;
 
     //Surcharge de l'opérateur << pour afficher le produit
-    friend ostream& operator << (ostream &flux, Produit const& p);
+    friend ostream& operator << (ostream &flux, const Produit& p);
 
     private :
     //Nom du produit
@@ -39,7 +39,7 @@ namespace vente{
     double _price;
 
     //fonction d'affichage pour la surcharge d'opérateur
-    string display();
+    string display() const;
 
   };
 }
