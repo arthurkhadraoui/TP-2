@@ -20,17 +20,12 @@ namespace vente{
     void setPrice(double price);
     void setQuantity(int quantity);
 
-<<<<<<< Updated upstream
+
     std::string getName() const;
     std::string getDescription() const;
     int getQuantity() const;
     double getPrice() const;
-=======
-    std::string getName() const ;
-    std::string getDescription() const;
-    int getQuantity();
-    double getPrice();
->>>>>>> Stashed changes
+
 
     //Surcharge de l'opérateur << pour afficher le produit
     friend ostream& operator << (ostream &flux, const Produit& p);

@@ -1,4 +1,5 @@
 #include "produit.h"
+#include <iomanip>
 
 namespace vente{
 
