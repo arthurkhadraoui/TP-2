@@ -21,13 +21,13 @@ namespace vente{
     void setQuantity(int quantity);
 
 <<<<<<< Updated upstream
-    string getName() const;
-    string getDescription() const;
+    std::string getName() const;
+    std::string getDescription() const;
     int getQuantity() const;
     double getPrice() const;
 =======
-    std::string getName();
-    std::string getDescription();
+    std::string getName() const ;
+    std::string getDescription() const;
     int getQuantity();
     double getPrice();
 >>>>>>> Stashed changes
@@ -46,7 +46,7 @@ namespace vente{
     double _price;
 
     //fonction d'affichage pour la surcharge d'opérateur
-    string display() const;
+    std::string display() const;
 
   };
 }

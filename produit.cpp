@@ -26,11 +26,11 @@ namespace vente{
     _price = price;
   }
 
-  string Produit::getName() const{
+  std::string Produit::getName() const{
     return _name;
   }
 
-  string Produit::getDescription() const{
+  std::string Produit::getDescription() const{
     return _description;
   }
 
@@ -42,7 +42,7 @@ namespace vente{
     return _price;
   }
 
-  string Produit::display() const{
+  std::string Produit::display() const{
     return (getName() + "\n" + getDescription() + "\n" + to_string(getPrice()) + "€ | " + to_string(getQuantity()) + " exemplaire\n");
   }
 
