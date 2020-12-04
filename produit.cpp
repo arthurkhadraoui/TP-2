@@ -72,7 +72,7 @@ namespace vente{
   }
 
   std::ostream& operator << (std::ostream &flux, const Produit& p){
-    flux << p.display();
+    flux << p.display(); //Surcharge l'opérateur
     return flux;
   }
 
