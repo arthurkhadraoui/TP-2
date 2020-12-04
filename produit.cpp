@@ -3,19 +3,19 @@
 
 namespace vente{
 
-  Produit::Produit(string name) : _name(name), _description(""), _quantity(0), _price(0){
+  Produit::Produit(std::string name) : _name(name), _description(""), _quantity(0), _price(0){
 
   }
 
-  Produit::Produit(string name, int quantity, double price) : _name(name), _description(""), _quantity(quantity), _price(price){
+  Produit::Produit(std::string name, int quantity, double price) : _name(name), _description(""), _quantity(quantity), _price(price){
 
   }
 
-  Produit::Produit(string name, string description, int quantity, double price) : _name(name), _description(description), _quantity(quantity), _price(price){
+  Produit::Produit(std::string name, std::string description, int quantity, double price) : _name(name), _description(description), _quantity(quantity), _price(price){
 
   }
 
-  void Produit::setDescription(string description){
+  void Produit::setDescription(std::string description){
     _description = description;
   }
 
@@ -44,10 +44,10 @@ namespace vente{
   }
 
   std::string Produit::display() const{
-    return (getName() + "\n" + getDescription() + "\n" + to_string(getPrice()) + "€ | " + to_string(getQuantity()) + " exemplaire\n");
+    return (getName() + "\n" + getDescription() + "\n" + std::to_string(getPrice()) + "€ | " + std::to_string(getQuantity()) + " exemplaire\n");
   }
 
-  ostream& operator << (ostream &flux, const Produit& p){
+  std::ostream& operator << (std::ostream &flux, const Produit& p){
     flux << p.display();
     return flux;
   }

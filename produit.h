@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
 
 namespace vente{
 
@@ -28,7 +27,7 @@ namespace vente{
 
 
     //Surcharge de l'opérateur << pour afficher le produit
-    friend ostream& operator << (ostream &flux, const Produit& p);
+    friend std::ostream& operator << (std::ostream &flux, const Produit& p);
 
     private :
     //Nom du produit
