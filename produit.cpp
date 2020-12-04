@@ -1,5 +1,4 @@
 #include "produit.h"
-#include <iomanip>
 
 namespace vente{
 
@@ -7,11 +6,11 @@ namespace vente{
 
   }
 
-  Produit::Produit(std::string name, int quantity, double price) : _name(name), _description(""), _quantity(quantity), _price(price){
+  Produit::Produit(std::string name, int quantity, double price) : _name(name), _description(""), _quantity(quantity), _price(round(price * 100)/100){
 
   }
 
-  Produit::Produit(std::string name, std::string description, int quantity, double price) : _name(name), _description(description), _quantity(quantity), _price(price){
+  Produit::Produit(std::string name, std::string description, int quantity, double price) : _name(name), _description(description), _quantity(quantity), _price(round(price * 100)/100){
 
   }
 
@@ -68,7 +67,7 @@ namespace vente{
     for (int i= 0;i<PRICE_SIZE - int(std::to_string(getPrice()).length());i++){
       res += " ";
     }
-    
+
     return res;
   }
 
