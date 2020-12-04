@@ -44,7 +44,32 @@ namespace vente{
   }
 
   std::string Produit::display() const{
-    return (getName() + "\n" + getDescription() + "\n" + std::to_string(getPrice()) + "€ | " + std::to_string(getQuantity()) + " exemplaire\n");
+    //Constante pour les taille des colones
+    const int NAME_SIZE = 17;
+    const int DESCRIPTION_SIZE = 34;
+    const int QUANTITY_SIZE = 14;
+    const int PRICE_SIZE = 7;
+
+    std::string res = ""; //Variable de résultat
+
+    res += getName(); //Ajout du champs
+    for (int i= 0;i<NAME_SIZE - int(getName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      res += " ";
+    }
+    res += getDescription();
+    for (int i= 0;i<DESCRIPTION_SIZE - int(getDescription().length());i++){
+      res += " ";
+    }
+    res += std::to_string(getQuantity());
+    for (int i= 0;i<QUANTITY_SIZE - int(std::to_string(getQuantity()).length());i++){
+      res += " ";
+    }
+    res += std::to_string(getPrice());
+    for (int i= 0;i<PRICE_SIZE - int(std::to_string(getPrice()).length());i++){
+      res += " ";
+    }
+    
+    return res;
   }
 
   std::ostream& operator << (std::ostream &flux, const Produit& p){
