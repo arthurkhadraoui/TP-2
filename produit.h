@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <math.h>
+#include <iomanip>
 
 namespace vente{
 
@@ -27,6 +28,8 @@ namespace vente{
     double getPrice() const;
 
 
+
+
     //Surcharge de l'opérateur << pour afficher le produit
     friend std::ostream& operator << (std::ostream &flux, const Produit& p);
 
@@ -44,6 +47,7 @@ namespace vente{
     std::string display() const;
 
   };
+std::string lastSpaces(Produit p);
 }
 
 #endif

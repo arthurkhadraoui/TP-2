@@ -1,4 +1,5 @@
 #include "produit.h"
+#include <sstream>
 
 namespace vente{
 
@@ -47,7 +48,6 @@ namespace vente{
     const int NAME_SIZE = 17;
     const int DESCRIPTION_SIZE = 34;
     const int QUANTITY_SIZE = 14;
-    const int PRICE_SIZE = 7;
 
     std::string res = ""; //Variable de résultat
 
@@ -63,13 +63,19 @@ namespace vente{
     for (int i= 0;i<QUANTITY_SIZE - int(std::to_string(getQuantity()).length());i++){
       res += " ";
     }
-    res += std::to_string(getPrice());
-    for (int i= 0;i<PRICE_SIZE - int(std::to_string(getPrice()).length());i++){
+
+    std::stringstream price;
+    price<<std::fixed<<std::setprecision(2)<<getPrice();
+    res+=price.str();
+    for (int i= 0;i<8 - int(price.str().length());i++){
       res += " ";
     }
+    
 
     return res;
   }
+
+  
 
   std::ostream& operator << (std::ostream &flux, const Produit& p){
     flux << p.display(); //Surcharge l'opérateur
