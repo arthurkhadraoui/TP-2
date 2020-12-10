@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include "produit.h"
-#include "magasin.h"
 
 namespace vente{
 
@@ -13,19 +12,17 @@ namespace vente{
 
       public :
       //Constructeurs de client
-      Client(int id, Magasin shop);
-      Client(int id, std::string name, std::string firstName, Magasin shop);
+      Client(int id);
+      Client(int id, std::string name, std::string firstName);
 
       //Accesseurs des attrbuts du client
       void setName(std::string name);
       void setFirstName(std::string firstName);
-      void setShop(Magasin shop);
 
       int getID() const;
       std::string getName() const;
       std::string getFirstName() const;
       std::vector<Produit> getProducts() const;
-      Magasin getShop();
 
       //Méthode d'ajout d'un produit "product" dans le panier en "quantity" quantité
       void add(Produit product, int quantity);
@@ -48,8 +45,6 @@ namespace vente{
       std::string _firstName;
       //Panier de client (liste de produit)
       std::vector<Produit> m_products;
-      //Magasin dans lequel se trouve le Client
-      Magasin _shop;
 
       //fonction d'affichage pour la surcharge d'opérateur
       std::string display() const;
