@@ -73,7 +73,16 @@ namespace vente{
   }
 
   std::string Client::display() const{
-    return(getFirstName() + " " + getName() + "\n" + "n° " + std::to_string(getID()) + "\nA dans son panier : \n" );
+    std::string outstring;
+    outstring += std::to_string(getID());
+    for (int i= 0;i<14 - int(std::to_string(getID()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      outstring += " ";
+    }
+    outstring += getName()+ " " +getFirstName();
+    for (int i= 0;i<58 - int(getName().length()+getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      outstring += " ";
+    }
+    return(outstring);
   }
 
 }

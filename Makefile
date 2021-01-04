@@ -22,10 +22,10 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(DEPFLAGS) -c  $<
 
 clean:
-	rm -f *.o *.d
+	del -f *.o *.d
 
 mrproper: clean
-	rm -f $(TARGET)
+	del -f $(TARGET)
 
 exe: $(TARGET)
 	./$(TARGET)
