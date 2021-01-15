@@ -4,6 +4,7 @@
 
 #include "produit.h"
 #include "client.h"
+#include "commande.h"
 
 
 namespace vente{
@@ -21,6 +22,9 @@ namespace vente{
 
 		void addCustomer(Client client);
 		void displayCustomers();
+
+		void validateCommande(Commande c);//Permet de valider une commande
+		void switchStatuts(Commande c, Statut s);//Permet de changer le statut d'une commande
 	};
 }
 

@@ -33,7 +33,11 @@ namespace vente{
       outstring += " ";
     }
     outstring += getClient().getName()+ " " + getClient().getFirstName();
-    for (int i= 0;i<58 - int(getClient().getName().length()+ getClient().getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+    for (int i= 0;i<48 - int(getClient().getName().length()+ getClient().getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      outstring += " ";
+    }
+    outstring += getStatut();
+    for (int i= 0;i<10 - int(getStatut)i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
     return(outstring);

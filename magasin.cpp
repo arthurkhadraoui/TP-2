@@ -77,7 +77,7 @@ namespace vente {
 			std::cout<<m_products.at(index);
 			std::cout<<"|";
 			std::cout<<std::endl;
-		
+
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -124,5 +124,16 @@ namespace vente {
 			std::cout<<"-";
 		}
 	}
+
+	void Magasin::validatesCommande(Commande c){
+			c.setStatut(Statut::Valide);
+		}
+
+	void Magasin::switchStatuts(Commande c, Statut s){
+			c.setStatut(s);
+		}
 	}
 
+	}
+
+	}
