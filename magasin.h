@@ -12,6 +12,7 @@ namespace vente{
 	private:
 		std::vector<Produit> m_products;
 		std::vector<Client> m_clients;
+		std::vector<int> m_uids;
 		//std::vector<Order*> m_orders;
 	public:
 		Magasin();
@@ -20,11 +21,20 @@ namespace vente{
 		void displayProduct(std::string prod);
 		void updateQuantity(std::string prodname, int quantity);
 
-		void addCustomer(Client client);
+		bool checkUids(int testnb);
+		void addCustomer(std::string prenom, std::string nom);
 		void displayCustomers();
+		void displayCustomer(std::string nprenom, std::string nom);
+		void displayCustomer(int uid);
 
 		void validateCommande(Commande c);//Permet de valider une commande
-		void switchStatuts(Commande c, Statut s);//Permet de changer le statut d'une commande
+		void switchStatuts(Commande c, Commande::Statut s);//Permet de changer le statut d'une commande
+
+		void addProductCart(std::string produit, std::string prenom, std::string nom);
+		//void removeProductCart(std::string produit, std::string prenom, std::string nom);
+		//void updateProductQuantityCart(std::string produit,int quantity ,std::string prenom, std::string nom);
+
+
 	};
 }
 

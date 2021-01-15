@@ -1,6 +1,5 @@
 #ifndef COMMANDE_H
 #define  COMMANDE_H
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -26,6 +25,8 @@ namespace vente{
       Client getClient() const;
       int getNumero() const;
       std::vector<Produit> getProducts() const;
+
+      friend std::ostream& operator << (std::ostream &flux, const Commande& c);
 
     private:
       //Numéro de commande

@@ -10,9 +10,11 @@ namespace vente{
     _statut = s;
   }
 
+
   Commande::Statut Commande::getStatut() const{
     return _statut;
   }
+
 
   int Commande::getNumero() const{
     return _numero;
@@ -37,7 +39,7 @@ namespace vente{
       outstring += " ";
     }
     outstring += getStatut();
-    for (int i= 0;i<10 - int(getStatut)i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+    for (int i= 0;i<10 - int(getStatut());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
     return(outstring);
@@ -47,5 +49,6 @@ namespace vente{
     flux << c.display(); //Surcharge de l'opérateur
     return flux;
   }
+
 
 }
