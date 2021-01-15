@@ -1,6 +1,4 @@
 #include "magasin.h"
-#include "produit.h"
-#include "client.h"
 #include <iostream>
 #include <algorithm>
 #include <random>
@@ -193,6 +191,7 @@ namespace vente {
 	void Magasin::switchStatuts(Commande c, Commande::Statut s){
 			c.setStatut(s);
 		}
+
 
 	void Magasin::displayCustomer(std::string prenom, std::string nom){
 		auto it = m_clients.begin();

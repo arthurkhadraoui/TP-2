@@ -30,6 +30,7 @@ namespace vente{
 		void validateCommande(Commande c);//Permet de valider une commande
 		void switchStatuts(Commande c, Commande::Statut s);//Permet de changer le statut d'une commande
 
+
 		void addProductCart(std::string produit, std::string prenom, std::string nom);
 		//void removeProductCart(std::string produit, std::string prenom, std::string nom);
 		//void updateProductQuantityCart(std::string produit,int quantity ,std::string prenom, std::string nom);
