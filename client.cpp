@@ -34,10 +34,9 @@ namespace vente{
     return m_products;
   }
 
-  void Client::add(Produit product, int quantity){
-    getProducts().push_back(product); //Ajoute le produit au panier
-    getProducts().at(getProducts().size()-1).setQuantity(quantity); //Change la quantité par celle choisis par le client
-    //Gestion des stocks depuis la classe Magasin
+  void Client::add(Produit product){
+    m_products.push_back(product); //Ajoute le produit au panier
+   
   }
 
   void Client::clearProducts(){

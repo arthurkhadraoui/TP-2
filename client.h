@@ -25,7 +25,7 @@ namespace vente{
       std::vector<Produit> getProducts() const;
 
       //Méthode d'ajout d'un produit "product" dans le panier en "quantity" quantité
-      void add(Produit product, int quantity);
+      void add(Produit product);
       //Méthode qui vide le panier
       void clearProducts();
       //Méthode qui modifie la quantité d'un produit du panier
