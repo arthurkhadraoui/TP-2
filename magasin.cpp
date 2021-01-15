@@ -1,6 +1,4 @@
 #include "magasin.h"
-#include "produit.h"
-#include "client.h"
 #include <iostream>
 #include <algorithm>
 
@@ -125,11 +123,11 @@ namespace vente {
 		}
 	}
 
-	void Magasin::validatesCommande(Commande c){
-			c.setStatut(Statut::Valide);
+	void Magasin::validateCommande(Commande c){
+			c.setStatut(Commande::Statut::Valide);
 		}
 
-	void Magasin::switchStatuts(Commande c, Statut s){
+	void Magasin::switchStatuts(Commande c, Commande::Statut s){
 			c.setStatut(s);
 		}
 

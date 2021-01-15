@@ -24,7 +24,7 @@ namespace vente{
 		void displayCustomers();
 
 		void validateCommande(Commande c);//Permet de valider une commande
-		void switchStatuts(Commande c, Statut s);//Permet de changer le statut d'une commande
+		void switchStatuts(Commande c, Commande::Statut s);//Permet de changer le statut d'une commande
 	};
 }
 
