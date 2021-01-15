@@ -27,6 +27,9 @@ namespace vente{
       int getNumero() const;
       std::vector<Produit> getProducts() const;
 
+			//fonction d'affichage pour la surcharge d'opérateur
+      std::string display() const;
+
     private:
       //Numéro de commande
       int _numero;
@@ -37,8 +40,8 @@ namespace vente{
       //Statut de la commande
       Statut _statut;
 
-      //fonction d'affichage pour la surcharge d'opérateur
-      std::string display() const;
+			//Surcharge de l'opérateur << pour afficher le produit
+	    friend std::ostream& operator << (std::ostream &flux, const Produit& p);
   };
 
 }

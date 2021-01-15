@@ -132,8 +132,5 @@ namespace vente {
 	void Magasin::switchStatuts(Commande c, Statut s){
 			c.setStatut(s);
 		}
-	}
-
-	}
 
 	}
