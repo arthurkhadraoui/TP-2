@@ -10,7 +10,7 @@ namespace vente{
     _statut = s;
   }
 
-  Statut Commande::getStatut() const{
+  Commande::Statut Commande::getStatut() const{
     return _statut;
   }
 
@@ -22,12 +22,21 @@ namespace vente{
     return _client;
   }
 
-  vector<Produit> Commande::getProducts() const{
+  std::vector<Produit> Commande::getProducts() const{
     return m_products;
   }
 
   std::string Client::display() const{
-    return(std::to_string(getNumero()) + " " + getClient() + "\n");
+    std::string outstring;
+    outstring += std::to_string(getNumero());
+    for (int i= 0;i<14 - int(std::to_string(getNumero ()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      outstring += " ";
+    }
+    outstring += getClient().getName()+ " " + getClient().getFirstName();
+    for (int i= 0;i<58 - int(getClient().getName().length()+ getClient().getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
+      outstring += " ";
+    }
+    return(outstring);
   }
 
 }
