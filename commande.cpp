@@ -26,7 +26,7 @@ namespace vente{
     return m_products;
   }
 
-  std::string Client::display() const{
+  std::string Commande::display() const{
     std::string outstring;
     outstring += std::to_string(getNumero());
     for (int i= 0;i<14 - int(std::to_string(getNumero ()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
@@ -37,6 +37,11 @@ namespace vente{
       outstring += " ";
     }
     return(outstring);
+  }
+
+  std::ostream& operator << (std::ostream &flux, const Commande& c){
+    flux << c.display(); //Surcharge de l'opérateur
+    return flux;
   }
 
 }
