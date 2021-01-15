@@ -46,6 +46,8 @@ namespace vente{
       //Panier de client (liste de produit)
       std::vector<Produit> m_products;
 
+      std::vector<int> _productQuantity;
+
       //fonction d'affichage pour la surcharge d'opérateur
       std::string display() const;
 

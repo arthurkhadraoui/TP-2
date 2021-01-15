@@ -36,12 +36,13 @@ namespace vente{
 
   void Client::add(Produit product){
     m_products.push_back(product); //Ajoute le produit au panier
-   
+    _productQuantity.push_back(1);
   }
 
   void Client::clearProducts(){
     //Gestion des stocks depuis la classe Magasin
     m_products.clear();//Vide le vector contenant le panier du client
+    _productQuantity.clear();
   }
 
   void Client::modifyQuantity(Produit product, int quantity){
@@ -49,7 +50,7 @@ namespace vente{
     //Gestion des stocks depuis la classe Magasin
     for(Produit p : getProducts()){ //Pour chaque produit du panier
       if(p.getName().compare(product.getName()) == 0){ //Si le produit est celui à supprimer
-        p.setQuantity(quantity); //Modifie la quantité
+        _productQuantity.at(i)=quantity; //Modifie la quantité
       }
       i++;
     }
@@ -60,7 +61,8 @@ namespace vente{
     //Gestion des stocks depuis la classe Magasin
     for(Produit p : getProducts()){ //Pour chaque produit du panier
       if(p.getName().compare(product.getName()) == 0){ //Si le produit est celui à supprimer
-        getProducts().erase(getProducts().begin() + i); //Supprime le produit du panier
+        m_products.erase(m_products.begin() + i); //Supprime le produit du panier
+        _productQuantity.erase(_productQuantity.begin() + i);
       }
       i++;
     }
@@ -81,6 +83,11 @@ namespace vente{
     for (int i= 0;i<58 - int(getName().length()+getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
+
+    for(int i=0;i<int(m_products.size());i++){
+      outstring+=m_products.at(i).getName()+' '+std::to_string(_productQuantity.at(i))+' ';
+    }
+    
     return(outstring);
   }
 

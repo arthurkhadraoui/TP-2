@@ -247,4 +247,69 @@ namespace vente {
 
 
 	}
+
+	void Magasin::addProductCart(std::string nproduit,int uid){
+		auto itC = m_clients.begin();
+ 			itC = std::find_if(itC, m_clients.end(),
+ 			[uid](const Client client) {
+ 				return client.getID()==uid;
+ 			});
+ 		int indexC = std::distance(m_clients.begin(), itC);
+
+ 		auto itP = m_products.begin();
+ 			itP = std::find_if(itP, m_products.end(),
+ 			[nproduit](const Produit produit) {
+ 				return produit.getName()==nproduit;
+ 			});
+ 		int indexproduct = std::distance(m_products.begin(), itP);
+
+ 		m_clients.at(indexC).add(m_products.at(indexproduct));
+
+
+	}
+	void Magasin::updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom){
+		auto itC = m_clients.begin();
+ 			itC = std::find_if(itC, m_clients.end(),
+ 			[nom,prenom](const Client client) {
+ 				return (client.getName()==nom && client.getFirstName()==prenom);
+ 			});
+ 		int indexClient = std::distance(m_clients.begin(), itC);
+
+ 		auto itP = m_products.begin();
+ 			itP = std::find_if(itP, m_products.end(),
+ 			[nproduit](const Produit produit) {
+ 				return produit.getName()==nproduit;
+ 			});
+ 		int indexproduct = std::distance(m_products.begin(), itP);
+ 		m_clients.at(indexClient).modifyQuantity(m_products.at(indexproduct),quantity);
+
+	}
+
+	void Magasin::removeProductCart(std::string nproduit, std::string prenom, std::string nom){
+			auto itC = m_clients.begin();
+ 			itC = std::find_if(itC, m_clients.end(),
+ 			[nom,prenom](const Client client) {
+ 				return (client.getName()==nom && client.getFirstName()==prenom);
+ 			});
+ 		int indexClient = std::distance(m_clients.begin(), itC);
+
+ 		auto itP = m_products.begin();
+ 			itP = std::find_if(itP, m_products.end(),
+ 			[nproduit](const Produit produit) {
+ 				return produit.getName()==nproduit;
+ 			});
+ 		int indexproduct = std::distance(m_products.begin(), itP);
+ 		m_clients.at(indexClient).deleteProduct(m_products.at(indexproduct));
+	}
+
+	void Magasin::clearCart(std::string prenom, std::string nom){
+		auto itC = m_clients.begin();
+ 			itC = std::find_if(itC, m_clients.end(),
+ 			[nom,prenom](const Client client) {
+ 				return (client.getName()==nom && client.getFirstName()==prenom);
+ 			});
+ 		int indexClient = std::distance(m_clients.begin(), itC);
+ 		m_clients.at(indexClient).clearProducts();
+
+	}
 }

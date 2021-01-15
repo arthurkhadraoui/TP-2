@@ -25,8 +25,20 @@ int main()
 	easyStore.updateQuantity("Playstation 4",PS4.getQuantity()-1);
 	easyStore.displayProduct("Playstation 4");
 	easyStore.displayCustomers();
+	easyStore.addProductCart("Playstation 4","Jean-Michel","Blanquer");
 	easyStore.displayCustomer("Jean-Michel","Blanquer");
-
-
+	easyStore.updateProductQuantityCart("Playstation 4",5,"Jean-Michel","Blanquer");
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.addProductCart("Playstation 5","Jean-Michel","Blanquer");	
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.removeProductCart("Playstation 4","Jean-Michel","Blanquer");	
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.removeProductCart("Playstation 5","Jean-Michel","Blanquer");	
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.addProductCart("Playstation 4","Jean-Michel","Blanquer");
+	easyStore.addProductCart("Playstation 5","Jean-Michel","Blanquer");
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.clearCart("Jean-Michel","Blanquer");
+	easyStore.displayCustomer("Jean-Michel","Blanquer");
 	return 0;
 }
