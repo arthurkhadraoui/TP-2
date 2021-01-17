@@ -104,7 +104,6 @@ namespace vente {
 
 
 	void Magasin::addCustomer(std::string prenom, std::string nom){
-		srand ( time(NULL) );
 		int uid=rand();
 		while(checkUids(uid)==true){
 			uid=rand();
@@ -183,14 +182,77 @@ namespace vente {
 	}
 	}
 
-
-	void Magasin::validateCommande(Commande c){
-			c.setStatut(Commande::Statut::Valide);
+	bool Magasin::checkOrderNum(int testnb){
+		auto it = std::find(orders_num.begin(), orders_num.end(), testnb);
+		if (it != orders_num.end()){
+			return true;
 		}
 
-	void Magasin::switchStatuts(Commande c, Commande::Statut s){
-			c.setStatut(s);
+			return false;
+	}
+
+	void Magasin::addOrder(std::string prenom, std::string nom){
+		
+		int num=rand();
+		while(checkOrderNum(num)==true){
+			num=rand();
 		}
+		auto it = m_clients.begin();
+ 			it = std::find_if(it, m_clients.end(),
+ 			[nom,prenom](const Client client) {
+ 				return (client.getName()==nom && client.getFirstName()==prenom);
+ 			});
+ 		int index = std::distance(m_clients.begin(), it);
+ 		Commande order(num,m_clients.at(index));
+		m_orders.push_back(order);
+	}
+
+	void Magasin::validateCommande(int orderNum){
+			auto it = m_orders.begin();
+ 			it = std::find_if(it, m_orders.end(),
+ 			[orderNum](const Commande order) {
+ 				return (order.getNumero()==orderNum);
+ 			});
+ 		int index = std::distance(m_orders.begin(), it);
+			m_orders.at(index).setStatut(Commande::Statut::Valide);
+		}
+
+	void Magasin::switchStatuts(int orderNum, Commande::Statut s){
+		auto it = m_orders.begin();
+ 			it = std::find_if(it, m_orders.end(),
+ 			[orderNum](const Commande order) {
+ 				return (order.getNumero()==orderNum);
+ 			});
+ 		int index = std::distance(m_orders.begin(), it);
+			m_orders.at(index).setStatut(s);
+		}
+
+	void Magasin::displayOrders(){
+		for (int i=0; i<75;i++){
+			std::cout<<"-";
+		}
+		std::cout<<std::endl;
+		std::cout<<"|Commande";
+		for (int i=0; i<65 ;i++){
+			std::cout<<" ";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|";
+		for (int i=0; i<73;i++){
+			std::cout<<"-";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|Numero      Client                   Statut          Produits            |"<<std::endl;
+		for(int i=0;i<int(m_orders.size());i++){
+			std::cout<<"|";
+			std::cout<<m_orders.at(i);
+			
+			std::cout<<std::endl;
+		}
+		for (int i=0; i<75;i++){
+			std::cout<<"-";
+		}
+	}
 
 
 	void Magasin::displayCustomer(std::string prenom, std::string nom){

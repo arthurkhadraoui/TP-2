@@ -8,6 +8,7 @@ using vente::Client;
 
 int main()
 {
+	srand ( time(NULL) );
 	Magasin easyStore;
 	Produit PS4("Playstation 4", "Console de jeu Playstation", 12, 399.99);
 	Produit PS5("Playstation 5", "Console de jeu Playstation", 0, 499.99);
@@ -25,20 +26,16 @@ int main()
 	easyStore.updateQuantity("Playstation 4",PS4.getQuantity()-1);
 	easyStore.displayProduct("Playstation 4");
 	easyStore.displayCustomers();
-	easyStore.addProductCart("Playstation 4","Jean-Michel","Blanquer");
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	easyStore.updateProductQuantityCart("Playstation 4",5,"Jean-Michel","Blanquer");
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	easyStore.addProductCart("Playstation 5","Jean-Michel","Blanquer");	
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	easyStore.removeProductCart("Playstation 4","Jean-Michel","Blanquer");	
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	easyStore.removeProductCart("Playstation 5","Jean-Michel","Blanquer");	
 	easyStore.displayCustomer("Jean-Michel","Blanquer");
 	easyStore.addProductCart("Playstation 4","Jean-Michel","Blanquer");
 	easyStore.addProductCart("Playstation 5","Jean-Michel","Blanquer");
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	easyStore.clearCart("Jean-Michel","Blanquer");
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
-	return 0;
+	easyStore.addProductCart("Playstation 5","Frederique","Vidal");
+	easyStore.addProductCart("Playstation 6","Frederique","Vidal");
+	easyStore.addProductCart("Playstation 4","Emmanuel","Macron");
+	easyStore.updateProductQuantityCart("Playstation 4",3,"Jean-Michel","Blanquer");
+	easyStore.addOrder("Emmanuel","Macron");
+	easyStore.addOrder("Jean-Michel","Blanquer");
+	easyStore.addOrder("Frederique","Vidal");
+	easyStore.displayOrders();
+	easyStore.
 }

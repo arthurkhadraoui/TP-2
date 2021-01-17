@@ -34,6 +34,10 @@ namespace vente{
     return m_products;
   }
 
+  std::vector<int> Client::getProductsQuantity() const{
+    return _productQuantity;
+  }
+
   void Client::add(Produit product){
     m_products.push_back(product); //Ajoute le produit au panier
     _productQuantity.push_back(1);
@@ -84,10 +88,6 @@ namespace vente{
       outstring += " ";
     }
 
-    for(int i=0;i<int(m_products.size());i++){
-      outstring+=m_products.at(i).getName()+' '+std::to_string(_productQuantity.at(i))+' ';
-    }
-    
     return(outstring);
   }
 

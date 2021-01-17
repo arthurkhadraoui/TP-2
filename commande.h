@@ -25,7 +25,7 @@ namespace vente{
       Client getClient() const;
       int getNumero() const;
       std::vector<Produit> getProducts() const;
-
+      
       friend std::ostream& operator << (std::ostream &flux, const Commande& c);
 
 			//fonction d'affichage pour la surcharge d'opérateur
@@ -39,8 +39,13 @@ namespace vente{
       Client _client;
       //Produit(s) acheté par le client
       std::vector<Produit> m_products;
+
+      std::vector<int> _productQuantity;
+
       //Statut de la commande
       Statut _statut;
+
+      std::vector<std::string> _enumVal={"Valide","En Attente","Refuse"};
 
 			//Surcharge de l'opérateur << pour afficher le produit
 	    friend std::ostream& operator << (std::ostream &flux, const Produit& p);

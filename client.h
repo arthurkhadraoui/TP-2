@@ -23,6 +23,7 @@ namespace vente{
       std::string getName() const;
       std::string getFirstName() const;
       std::vector<Produit> getProducts() const;
+      std::vector<int> getProductsQuantity() const;
 
       //Méthode d'ajout d'un produit "product" dans le panier en "quantity" quantité
       void add(Produit product);
