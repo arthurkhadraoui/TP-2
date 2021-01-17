@@ -205,6 +205,7 @@ namespace vente {
  		int index = std::distance(m_clients.begin(), it);
  		Commande order(num,m_clients.at(index));
 		m_orders.push_back(order);
+		clearCart(prenom,nom);
 	}
 
 	void Magasin::validateCommande(int orderNum){
@@ -252,8 +253,10 @@ namespace vente {
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
+		std::cout<<std::endl;
 	}
 
+	
 
 	void Magasin::displayCustomer(std::string prenom, std::string nom){
 		auto it = m_clients.begin();
@@ -289,6 +292,48 @@ namespace vente {
 		}
 		std::cout<<std::endl;
 	}
+
+	void Magasin::displayOrdersFromCustomer(std::string prenom, std::string nom){
+		std::vector<Commande> ordersFromCustomer;
+		auto it = m_orders.begin();
+		while(it!=m_orders.end()){
+ 			it = std::find_if(it, m_orders.end(),
+ 			[nom,prenom](const Commande order) {
+ 				return (order.getClient().getName()==nom && order.getClient().getFirstName()==prenom);
+ 			});
+ 		int index = std::distance(m_orders.begin(), it);
+ 		ordersFromCustomer.push_back(m_orders.at(index));
+ 		it++;
+ 	}
+
+ 		for (int i=0; i<75;i++){
+			std::cout<<"-";
+		}
+		std::cout<<std::endl;
+		std::cout<<"|Commande";
+		for (int i=0; i<65 ;i++){
+			std::cout<<" ";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|";
+		for (int i=0; i<73;i++){
+			std::cout<<"-";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|Numero      Client                   Statut          Produits            |"<<std::endl;
+		for(int i=0;i<int(ordersFromCustomer.size());i++){
+			std::cout<<"|";
+			std::cout<<ordersFromCustomer.at(i);
+			
+			std::cout<<std::endl;
+		}
+		for (int i=0; i<75;i++){
+			std::cout<<"-";
+		}
+		std::cout<<std::endl;
+		}
+
+
 
 	void Magasin::addProductCart(std::string nproduit, std::string prenom, std::string nom){
 		auto itC = m_clients.begin();

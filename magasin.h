@@ -33,6 +33,7 @@ namespace vente{
 		void validateCommande(int orderNum);//Permet de valider une commande
 		void switchStatuts(int orderNum, Commande::Statut s);//Permet de changer le statut d'une commande
 		void displayOrders();
+		void displayOrdersFromCustomer(std::string prenom, std::string nom);
 
 
 		void addProductCart(std::string nproduit, std::string prenom, std::string nom);

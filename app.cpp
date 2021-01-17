@@ -13,6 +13,7 @@ int main()
 	Produit PS4("Playstation 4", "Console de jeu Playstation", 12, 399.99);
 	Produit PS5("Playstation 5", "Console de jeu Playstation", 0, 499.99);
 	Produit PS6("Playstation 6", "Console de jeu Playstation", 0, 699.99);
+	Produit PSVR("Playstation VR", "Casque de realité vituelle", 3, 299.99);
 	easyStore.addCustomer("Jean-Michel","Blanquer");
 	easyStore.addCustomer("Frederique","Vidal");
 	easyStore.addCustomer("Jean","Castex");
@@ -21,12 +22,7 @@ int main()
 	easyStore.addProduct(PS4);
 	easyStore.addProduct(PS5);
 	easyStore.addProduct(PS6);
-	easyStore.displayAllProducts();
-	easyStore.displayProduct("Playstation 4");
-	easyStore.updateQuantity("Playstation 4",PS4.getQuantity()-1);
-	easyStore.displayProduct("Playstation 4");
-	easyStore.displayCustomers();
-	easyStore.displayCustomer("Jean-Michel","Blanquer");
+	easyStore.addProduct(PSVR);
 	easyStore.addProductCart("Playstation 4","Jean-Michel","Blanquer");
 	easyStore.addProductCart("Playstation 5","Jean-Michel","Blanquer");
 	easyStore.addProductCart("Playstation 5","Frederique","Vidal");
@@ -37,5 +33,8 @@ int main()
 	easyStore.addOrder("Jean-Michel","Blanquer");
 	easyStore.addOrder("Frederique","Vidal");
 	easyStore.displayOrders();
-	easyStore.
+	easyStore.addProductCart("Playstation VR","Jean-Michel","Blanquer");
+	easyStore.addOrder("Jean-Michel","Blanquer");
+	easyStore.displayOrdersFromCustomer("Jean-Michel","Blanquer");
+	easyStore.displayOrders();
 }
