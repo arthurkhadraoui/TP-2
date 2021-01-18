@@ -32,7 +32,12 @@ namespace vente{
     return m_products;
   }
 
+  std::vector<int> Commande::getProductQuantity() const{
+    return _productQuantity;
+  }
+
   
+
 
   std::string Commande::display() const{
     std::string outstring;

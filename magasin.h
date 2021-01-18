@@ -21,6 +21,7 @@ namespace vente{
 		void displayAllProducts() const;
 		void displayProduct(std::string prod);
 		void updateQuantity(std::string prodname, int quantity);
+		std::vector<Commande> getOrders() const;
 
 		bool checkUids(int testnb);
 		void addCustomer(std::string prenom, std::string nom);

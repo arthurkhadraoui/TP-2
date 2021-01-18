@@ -10,6 +10,10 @@ namespace vente {
 		m_products.push_back(produit);
 	}
 
+	std::vector<Commande> Magasin::getOrders() const{
+		return m_orders;
+	}
+
 	void Magasin::displayAllProducts() const {
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
@@ -46,12 +50,12 @@ namespace vente {
 
 	void Magasin::displayProduct(std::string name){
 		auto it = m_products.begin();
- 			it = std::find_if(it, m_products.end(),
- 			[name](const Produit produit) {
- 				return produit.getName()==name;
- 			});
- 		int index = std::distance(m_products.begin(), it);
- 		for (int i=0; i<75;i++){
+		it = std::find_if(it, m_products.end(),
+			[name](const Produit produit) {
+				return produit.getName()==name;
+			});
+		int index = std::distance(m_products.begin(), it);
+		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
@@ -72,10 +76,10 @@ namespace vente {
 			std::cout<<"-";
 		}
 		std::cout<<"|"<<std::endl;
-			std::cout<<"|";
-			std::cout<<m_products.at(index);
-			std::cout<<"|";
-			std::cout<<std::endl;
+		std::cout<<"|";
+		std::cout<<m_products.at(index);
+		std::cout<<"|";
+		std::cout<<std::endl;
 
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
@@ -85,12 +89,12 @@ namespace vente {
 
 	void Magasin::updateQuantity(std::string prodname, int quantity){
 		auto it = m_products.begin();
- 			it = std::find_if(it, m_products.end(),
- 			[prodname](const Produit produit) {
- 				return produit.getName()==prodname;
- 			});
- 		int index = std::distance(m_products.begin(), it);
- 		m_products.at(index).setQuantity(quantity);
+		it = std::find_if(it, m_products.end(),
+			[prodname](const Produit produit) {
+				return produit.getName()==prodname;
+			});
+		int index = std::distance(m_products.begin(), it);
+		m_products.at(index).setQuantity(quantity);
 	}
 
 	bool Magasin::checkUids(int testnb){
@@ -99,7 +103,7 @@ namespace vente {
 			return true;
 		}
 
-			return false;
+		return false;
 	}
 
 
@@ -144,42 +148,42 @@ namespace vente {
 
 	void Magasin::displayCustomer(int uid){
 		if (checkUids(uid)==true){
-		auto it = m_clients.begin();
- 			it = std::find_if(it, m_clients.end(),
- 			[uid](const Client client) {
- 				return client.getID()==uid;
- 			});
- 		int index = std::distance(m_clients.begin(), it);
- 		
- 		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-		std::cout<<"|Client";
-		for (int i=0; i<67 ;i++){
-			std::cout<<" ";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|ID            Full name                                                  |"<<std::endl;
-		
+			auto it = m_clients.begin();
+			it = std::find_if(it, m_clients.end(),
+				[uid](const Client client) {
+					return client.getID()==uid;
+				});
+			int index = std::distance(m_clients.begin(), it);
+
+			for (int i=0; i<75;i++){
+				std::cout<<"-";
+			}
+			std::cout<<std::endl;
+			std::cout<<"|Client";
+			for (int i=0; i<67 ;i++){
+				std::cout<<" ";
+			}
+			std::cout<<"|"<<std::endl;
+			std::cout<<"|";
+			for (int i=0; i<73;i++){
+				std::cout<<"-";
+			}
+			std::cout<<"|"<<std::endl;
+			std::cout<<"|ID            Full name                                                  |"<<std::endl;
+
 			std::cout<<"|";
 			std::cout<<m_clients.at(index);
 			std::cout<<"|";
 			std::cout<<std::endl;
-		
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-	}
 
-	else{
-		std::cout<<"Client non trouvé!"<<std::endl;
-	}
+			for (int i=0; i<75;i++){
+				std::cout<<"-";
+			}
+		}
+
+		else{
+			std::cout<<"Client non trouvé!"<<std::endl;
+		}
 	}
 
 	bool Magasin::checkOrderNum(int testnb){
@@ -188,7 +192,7 @@ namespace vente {
 			return true;
 		}
 
-			return false;
+		return false;
 	}
 
 	void Magasin::addOrder(std::string prenom, std::string nom){
@@ -198,43 +202,54 @@ namespace vente {
 			num=rand();
 		}
 		auto it = m_clients.begin();
- 			it = std::find_if(it, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int index = std::distance(m_clients.begin(), it);
- 		Commande order(num,m_clients.at(index));
+		it = std::find_if(it, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int index = std::distance(m_clients.begin(), it);
+		Commande order(num,m_clients.at(index));
 		m_orders.push_back(order);
 		clearCart(prenom,nom);
 	}
 
 	void Magasin::validateCommande(int orderNum){
-			auto it = m_orders.begin();
- 			it = std::find_if(it, m_orders.end(),
- 			[orderNum](const Commande order) {
- 				return (order.getNumero()==orderNum);
- 			});
- 		int index = std::distance(m_orders.begin(), it);
-			m_orders.at(index).setStatut(Commande::Statut::Valide);
+		auto it = m_orders.begin();
+		it = std::find_if(it, m_orders.end(),
+			[orderNum](const Commande order) {
+				return (order.getNumero()==orderNum);
+			});
+		int index = std::distance(m_orders.begin(), it);
+		m_orders.at(index).setStatut(Commande::Statut::Valide);
+		for (int i=0;i<int(m_orders.at(index).getProducts().size());i++){
+			std::string name = m_orders.at(index).getProducts().at(i).getName();
+			auto itP = m_products.begin();
+			itP = std::find_if(itP, m_products.end(),
+				[name](const Produit produit) {
+					return (produit.getName()==name);
+				});
+			int indexP = std::distance(m_products.begin(), itP);
+			int less =(m_products.at(indexP).getQuantity())-(m_orders.at(index).getProductQuantity().at(indexP));
+			m_products.at(indexP).setQuantity(less);
 		}
+	}
 
 	void Magasin::switchStatuts(int orderNum, Commande::Statut s){
 		auto it = m_orders.begin();
- 			it = std::find_if(it, m_orders.end(),
- 			[orderNum](const Commande order) {
- 				return (order.getNumero()==orderNum);
- 			});
- 		int index = std::distance(m_orders.begin(), it);
-			m_orders.at(index).setStatut(s);
-		}
+		it = std::find_if(it, m_orders.end(),
+			[orderNum](const Commande order) {
+				return (order.getNumero()==orderNum);
+			});
+		int index = std::distance(m_orders.begin(), it);
+		m_orders.at(index).setStatut(s);
+	}
 
 	void Magasin::displayOrders(){
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
-		std::cout<<"|Commande";
-		for (int i=0; i<65 ;i++){
+		std::cout<<"|Commandes";
+		for (int i=0; i<64 ;i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
@@ -260,13 +275,13 @@ namespace vente {
 
 	void Magasin::displayCustomer(std::string prenom, std::string nom){
 		auto it = m_clients.begin();
- 			it = std::find_if(it, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int index = std::distance(m_clients.begin(), it);
+		it = std::find_if(it, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int index = std::distance(m_clients.begin(), it);
 
- 		for (int i=0; i<75;i++){
+		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
@@ -282,10 +297,10 @@ namespace vente {
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|ID            Full name                                                  |"<<std::endl;
 		
-			std::cout<<"|";
-			std::cout<<m_clients.at(index);
-			std::cout<<"|";
-			std::cout<<std::endl;
+		std::cout<<"|";
+		std::cout<<m_clients.at(index);
+		std::cout<<"|";
+		std::cout<<std::endl;
 		
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
@@ -297,21 +312,21 @@ namespace vente {
 		std::vector<Commande> ordersFromCustomer;
 		auto it = m_orders.begin();
 		while(it!=m_orders.end()){
- 			it = std::find_if(it, m_orders.end(),
- 			[nom,prenom](const Commande order) {
- 				return (order.getClient().getName()==nom && order.getClient().getFirstName()==prenom);
- 			});
- 		int index = std::distance(m_orders.begin(), it);
- 		ordersFromCustomer.push_back(m_orders.at(index));
- 		it++;
- 	}
+			it = std::find_if(it, m_orders.end(),
+				[nom,prenom](const Commande order) {
+					return (order.getClient().getName()==nom && order.getClient().getFirstName()==prenom);
+				});
+			int index = std::distance(m_orders.begin(), it);
+			ordersFromCustomer.push_back(m_orders.at(index));
+			it++;
+		}
 
- 		for (int i=0; i<75;i++){
+		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
-		std::cout<<"|Commande";
-		for (int i=0; i<65 ;i++){
+		std::cout<<"|Commandes";
+		for (int i=0; i<64 ;i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
@@ -331,92 +346,92 @@ namespace vente {
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
-		}
+	}
 
 
 
 	void Magasin::addProductCart(std::string nproduit, std::string prenom, std::string nom){
 		auto itC = m_clients.begin();
- 			itC = std::find_if(itC, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int indexClient = std::distance(m_clients.begin(), itC);
+		itC = std::find_if(itC, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int indexClient = std::distance(m_clients.begin(), itC);
 
- 		auto itP = m_products.begin();
- 			itP = std::find_if(itP, m_products.end(),
- 			[nproduit](const Produit produit) {
- 				return produit.getName()==nproduit;
- 			});
- 		int indexproduct = std::distance(m_products.begin(), itP);
+		auto itP = m_products.begin();
+		itP = std::find_if(itP, m_products.end(),
+			[nproduit](const Produit produit) {
+				return produit.getName()==nproduit;
+			});
+		int indexproduct = std::distance(m_products.begin(), itP);
 
- 		m_clients.at(indexClient).add(m_products.at(indexproduct));
+		m_clients.at(indexClient).add(m_products.at(indexproduct));
 
 
 	}
 
 	void Magasin::addProductCart(std::string nproduit,int uid){
 		auto itC = m_clients.begin();
- 			itC = std::find_if(itC, m_clients.end(),
- 			[uid](const Client client) {
- 				return client.getID()==uid;
- 			});
- 		int indexC = std::distance(m_clients.begin(), itC);
+		itC = std::find_if(itC, m_clients.end(),
+			[uid](const Client client) {
+				return client.getID()==uid;
+			});
+		int indexC = std::distance(m_clients.begin(), itC);
 
- 		auto itP = m_products.begin();
- 			itP = std::find_if(itP, m_products.end(),
- 			[nproduit](const Produit produit) {
- 				return produit.getName()==nproduit;
- 			});
- 		int indexproduct = std::distance(m_products.begin(), itP);
+		auto itP = m_products.begin();
+		itP = std::find_if(itP, m_products.end(),
+			[nproduit](const Produit produit) {
+				return produit.getName()==nproduit;
+			});
+		int indexproduct = std::distance(m_products.begin(), itP);
 
- 		m_clients.at(indexC).add(m_products.at(indexproduct));
+		m_clients.at(indexC).add(m_products.at(indexproduct));
 
 
 	}
 	void Magasin::updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom){
 		auto itC = m_clients.begin();
- 			itC = std::find_if(itC, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int indexClient = std::distance(m_clients.begin(), itC);
+		itC = std::find_if(itC, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int indexClient = std::distance(m_clients.begin(), itC);
 
- 		auto itP = m_products.begin();
- 			itP = std::find_if(itP, m_products.end(),
- 			[nproduit](const Produit produit) {
- 				return produit.getName()==nproduit;
- 			});
- 		int indexproduct = std::distance(m_products.begin(), itP);
- 		m_clients.at(indexClient).modifyQuantity(m_products.at(indexproduct),quantity);
+		auto itP = m_products.begin();
+		itP = std::find_if(itP, m_products.end(),
+			[nproduit](const Produit produit) {
+				return produit.getName()==nproduit;
+			});
+		int indexproduct = std::distance(m_products.begin(), itP);
+		m_clients.at(indexClient).modifyQuantity(m_products.at(indexproduct),quantity);
 
 	}
 
 	void Magasin::removeProductCart(std::string nproduit, std::string prenom, std::string nom){
-			auto itC = m_clients.begin();
- 			itC = std::find_if(itC, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int indexClient = std::distance(m_clients.begin(), itC);
+		auto itC = m_clients.begin();
+		itC = std::find_if(itC, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int indexClient = std::distance(m_clients.begin(), itC);
 
- 		auto itP = m_products.begin();
- 			itP = std::find_if(itP, m_products.end(),
- 			[nproduit](const Produit produit) {
- 				return produit.getName()==nproduit;
- 			});
- 		int indexproduct = std::distance(m_products.begin(), itP);
- 		m_clients.at(indexClient).deleteProduct(m_products.at(indexproduct));
+		auto itP = m_products.begin();
+		itP = std::find_if(itP, m_products.end(),
+			[nproduit](const Produit produit) {
+				return produit.getName()==nproduit;
+			});
+		int indexproduct = std::distance(m_products.begin(), itP);
+		m_clients.at(indexClient).deleteProduct(m_products.at(indexproduct));
 	}
 
 	void Magasin::clearCart(std::string prenom, std::string nom){
 		auto itC = m_clients.begin();
- 			itC = std::find_if(itC, m_clients.end(),
- 			[nom,prenom](const Client client) {
- 				return (client.getName()==nom && client.getFirstName()==prenom);
- 			});
- 		int indexClient = std::distance(m_clients.begin(), itC);
- 		m_clients.at(indexClient).clearProducts();
+		itC = std::find_if(itC, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int indexClient = std::distance(m_clients.begin(), itC);
+		m_clients.at(indexClient).clearProducts();
 
 	}
 }

@@ -25,6 +25,9 @@ namespace vente{
       Client getClient() const;
       int getNumero() const;
       std::vector<Produit> getProducts() const;
+      std::vector<int> getProductQuantity() const;
+      
+
       
       friend std::ostream& operator << (std::ostream &flux, const Commande& c);
 
