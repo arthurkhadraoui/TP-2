@@ -3,7 +3,6 @@
 #include "observer.h"
 #include "view.h"
 #include "controller.h"
-#include "magasin.h"
 class ViewMenu: public View
 {
 private:

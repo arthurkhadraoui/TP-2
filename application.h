@@ -2,7 +2,9 @@
 #define APPLICATION_H
 #include "Controller.h"
 #include "viewClient.h"
+#include "viewProduit.h"
 #include "viewMenu.h"
+#include "viewCommande.h"
 #include "magasin.h"
 
 
@@ -12,6 +14,8 @@ private:
 	Controller controller;
 	ViewClient viewClient;
 	ViewMenu viewMenu;
+	ViewProduit viewProduit;
+	ViewCommande viewCommande;
 	vente::Magasin _magasin;
 
 public:

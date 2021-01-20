@@ -6,7 +6,9 @@
 namespace vente {
 	Magasin::Magasin(){}
 
-	void Magasin::addProduct(Produit produit){
+	void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
+
+		Produit produit(name,description,quantity,price);
 		m_products.push_back(produit);
 	}
 
@@ -118,7 +120,7 @@ namespace vente {
 	}
 
 
-	void Magasin::displayCustomers(){
+	void Magasin::displayCustomers()const {
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -235,14 +237,20 @@ namespace vente {
 		}
 	}
 
-	void Magasin::switchStatuts(int orderNum, Commande::Statut s){
+	void Magasin::switchStatuts(int orderNum, int s){
 		auto it = m_orders.begin();
 		it = std::find_if(it, m_orders.end(),
 			[orderNum](const Commande order) {
 				return (order.getNumero()==orderNum);
 			});
 		int index = std::distance(m_orders.begin(), it);
-		m_orders.at(index).setStatut(s);
+		switch (s) {
+			case 0: m_orders.at(index).setStatut(Commande::Statut::Valide);
+			case 1: m_orders.at(index).setStatut(Commande::Statut::EnAttente);
+			case 2: m_orders.at(index).setStatut(Commande::Statut::Refuse);
+			default: break;
+		}
+
 	}
 
 	void Magasin::displayOrders(){
@@ -353,6 +361,7 @@ namespace vente {
 
 
 	void Magasin::addProductCart(std::string nproduit, std::string prenom, std::string nom){
+
 		auto itC = m_clients.begin();
 		itC = std::find_if(itC, m_clients.end(),
 			[nom,prenom](const Client client) {
@@ -368,7 +377,6 @@ namespace vente {
 		int indexproduct = std::distance(m_products.begin(), itP);
 
 		m_clients.at(indexClient).add(m_products.at(indexproduct));
-
 
 	}
 

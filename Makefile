@@ -7,7 +7,7 @@ DEPFLAGS   = -MMD
 LDFLAGS    =
 # Replace your_files.cpp with the list of cpp files that need to be compiled
 # Ex: file1.cpp file2.cpp file3.cpp
-SRCS       = commande.cpp produit.cpp client.cpp magasin.cpp app.cpp application.cpp controller.cpp observer.cpp subject.cpp view.cpp viewClient.cpp viewMenu.cpp
+SRCS       = commande.cpp produit.cpp client.cpp magasin.cpp app.cpp application.cpp controller.cpp observer.cpp subject.cpp view.cpp viewClient.cpp viewMenu.cpp viewProduit.cpp viewCommande.cpp
 OBJS       = $(SRCS:.cpp=.o)
 # Replace your_app with the name you want to give to your executable file
 TARGET     = tp2.exe
