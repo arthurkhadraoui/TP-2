@@ -144,7 +144,8 @@ namespace vente {
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
-	}
+		}
+
 
 	void Magasin::displayCustomer(int uid){
 		if (checkUids(uid)==true){
@@ -179,10 +180,11 @@ namespace vente {
 			for (int i=0; i<75;i++){
 				std::cout<<"-";
 			}
+			std::cout<<std::endl;
 		}
 
 		else{
-			std::cout<<"Client non trouvé!"<<std::endl;
+			std::cout<<"Client non trouve!"<<std::endl;
 		}
 	}
 

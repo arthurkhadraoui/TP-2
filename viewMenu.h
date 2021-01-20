@@ -3,7 +3,7 @@
 #include "observer.h"
 #include "view.h"
 #include "controller.h"
-#include "../magasin.h"
+#include "magasin.h"
 class ViewMenu: public View
 {
 private:
@@ -16,4 +16,4 @@ public:
 
 	virtual void display();
 };
-#define VIEWMENU_H
+#endif
