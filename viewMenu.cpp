@@ -46,25 +46,25 @@ void ViewMenu::display()
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"1.Afficher les clients";
-	for (int i=0; i<73-std::string("1.Afficher les clients").length();i++){
+	for (int i=0; i<73-int(std::string("1.Afficher les clients").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"2.Afficher les produits";
-	for (int i=0; i<73-std::string("1.Afficher les produits").length();i++){
+	for (int i=0; i<73-int(std::string("1.Afficher les produits").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"3.Afficher les commandes";
-	for (int i=0; i<73-std::string("2.Afficher les commandes").length();i++){
+	for (int i=0; i<73-int(std::string("2.Afficher les commandes").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"0.Quitter";
-	for (int i=0; i<73-std::string("2.Quitter").length();i++){
+	for (int i=0; i<73-int(std::string("2.Quitter").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;

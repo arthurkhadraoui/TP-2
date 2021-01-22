@@ -251,9 +251,9 @@ namespace vente {
 			});
 		int index = std::distance(m_orders.begin(), it);
 		switch (s) {
-			case 0: m_orders.at(index).setStatut(Commande::Statut::Valide);
-			case 1: m_orders.at(index).setStatut(Commande::Statut::EnAttente);
-			case 2: m_orders.at(index).setStatut(Commande::Statut::Refuse);
+			case 0: m_orders.at(index).setStatut(Commande::Statut::Valide);break;
+			case 1: m_orders.at(index).setStatut(Commande::Statut::EnAttente);break;
+			case 2: m_orders.at(index).setStatut(Commande::Statut::Refuse);break;
 			default: break;
 		}
 
@@ -462,4 +462,5 @@ namespace vente {
 		}
 
 	}
+
 }

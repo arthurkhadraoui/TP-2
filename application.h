@@ -12,8 +12,8 @@ class Application
 {
 private:
 	Controller controller;
-	ViewClient viewClient;
 	ViewMenu viewMenu;
+	ViewClient viewClient;
 	ViewProduit viewProduit;
 	ViewCommande viewCommande;
 	vente::Magasin _magasin;

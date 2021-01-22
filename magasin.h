@@ -45,7 +45,6 @@ namespace vente{
 
 		void loadCustomers();
 
-		void loadOrders();
 
 		
 

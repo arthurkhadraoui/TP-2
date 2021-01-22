@@ -34,19 +34,19 @@ void ViewCommande::changeStatus(){
 	std::cout<<std::endl;
 	std::cout<<"|";
 	std::cout<<"0: Valider";
-	for (int i=0; i<73-std::string("0: Valider").length();i++){
+	for (int i=0; i<73-int(std::string("0: Valider").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"1: En Attente";
-	for (int i=0; i<73-std::string("1: En Attente").length();i++){
+	for (int i=0; i<73-int(std::string("1: En Attente").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"2: Refuser";
-	for (int i=0; i<73-std::string("2: Refuser").length();i++){
+	for (int i=0; i<73-int(std::string("2: Refuser").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
@@ -103,34 +103,34 @@ void ViewCommande::display(){
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"1.Ajouter une commande";
-	for (int i=0; i<73-std::string("1.Ajouter une commande").length();i++){
+	for (int i=0; i<73-int(std::string("1.Ajouter une commande").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 	std::cout<<"|";
 	std::cout<<"2.Valider une commande";
-	for (int i=0; i<73-std::string("2.Valider une commande").length();i++){
+	for (int i=0; i<73-int(std::string("2.Valider une commande").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 
 	std::cout<<"|";
 	std::cout<<"3.Changer le statut d'une commande";
-	for (int i=0; i<73-std::string("3.Changer le statut d'une commande").length();i++){
+	for (int i=0; i<73-int(std::string("3.Changer le statut d'une commande").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 
 	std::cout<<"|";
 	std::cout<<"4.Afficher les commandes d'un client";
-	for (int i=0; i<73-std::string("4.Afficher les commandes d'un client").length();i++){
+	for (int i=0; i<73-int(std::string("4.Afficher les commandes d'un client").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
 
 	std::cout<<"|";
 	std::cout<<"0.Retour";
-	for (int i=0; i<73-std::string("0.Retour").length();i++){
+	for (int i=0; i<73-int(std::string("0.Retour").length());i++){
 		std::cout<<" ";
 	}
 	std::cout<<"|"<<std::endl;
@@ -143,11 +143,16 @@ void ViewCommande::display(){
 	std::cin.clear();
 	std::cin >> res;
 
+	while (res!=0 && res!=1 && res!=2 && res!=3 && res!=4  ){
+		std::cout<<"Veuillez selectionner une option valide:"<<std::endl;
+		std::cin >> res;
+	}
+
 	switch(res){
-		case 0: controller.setScreen(0);
-		case 1: addOrder();
-		case 2: validateOrder();
-		case 3: changeStatus();
-		case 4: displayFromCustomer();
+		case 0: controller.setScreen(0);break;
+		case 1: addOrder();break;
+		case 2: validateOrder();break;
+		case 3: changeStatus();break;
+		case 4: displayFromCustomer();break;
 	}
 }

@@ -131,51 +131,51 @@ void ViewProduit::clearCart(){
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"1.Ajouter un produit";
-		for (int i=0; i<73-std::string("1.Ajouter un produit").length();i++){
+		for (int i=0; i<73-int(std::string("1.Ajouter un produit").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"2.Afficher un produit";
-		for (int i=0; i<73-std::string("2.Afficher un produit").length();i++){
+		for (int i=0; i<73-int(std::string("2.Afficher un produit").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 			std::cout<<"|";
 		std::cout<<"3.Modifier la quantite d'un produit";
-		for (int i=0; i<73-std::string("3.Modifier la quantite d'un produit").length();i++){
+		for (int i=0; i<73-int(std::string("3.Modifier la quantite d'un produit").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 
 			std::cout<<"|";
 		std::cout<<"4.Ajouter un produit au panier d'un client";
-		for (int i=0; i<73-std::string("4.Ajouter un produit au panier d'un client").length();i++){
+		for (int i=0; i<73-int(std::string("4.Ajouter un produit au panier d'un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 			std::cout<<"|";
 		std::cout<<"5.Supprimer un produit du panier d'un client";
-		for (int i=0; i<73-std::string("5.Supprimer un produit au panier d'un client").length();i++){
+		for (int i=0; i<73-int(std::string("5.Supprimer un produit au panier d'un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 
 					std::cout<<"|";
 		std::cout<<"6.Modifier la quantite d'un produit du panier d'un client";
-		for (int i=0; i<73-std::string("6.Modifier la quantity d'un produit du panier d'un client").length();i++){
+		for (int i=0; i<73-int(std::string("6.Modifier la quantity d'un produit du panier d'un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 				std::cout<<"7.Vider le panier d'un client";
-		for (int i=0; i<73-std::string("7.Vider le panier d'un client").length();i++){
+		for (int i=0; i<73-int(std::string("7.Vider le panier d'un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"0.Retour";
-		for (int i=0; i<73-std::string("0.Retour").length();i++){
+		for (int i=0; i<73-int(std::string("0.Retour").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
@@ -188,15 +188,20 @@ void ViewProduit::clearCart(){
 		std::cin.clear();
 		std::cin >> res;
 
+		while (res!=0 && res!=1 && res!=2 && res!=3 && res!=4 && res!=5 && res!=6 && res!=7  ){
+		std::cout<<"Veuillez selectionner une option valide:"<<std::endl;
+		std::cin >> res;
+	}
+
 		switch(res){
-			case 0: controller.setScreen(0);
-			case 1: addProduct();
-			case 2: showProduct();
-			case 3: updateProductQuantity();
-			case 4: addProductToCart();
-			case 5:removeProductFromCart();
-			case 6: updateProductQuantityCart();
-			case 7:clearCart();
+			case 0: controller.setScreen(0);break;
+			case 1: addProduct();break;
+			case 2: showProduct();break;
+			case 3: updateProductQuantity();break;
+			case 4: addProductToCart();break;
+			case 5:removeProductFromCart();break;
+			case 6: updateProductQuantityCart();break;
+			case 7:clearCart();break;
 		}
 }
 
