@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <fstream>
 
 namespace vente {
 	Magasin::Magasin(){}
@@ -104,16 +105,20 @@ namespace vente {
 		if (it != m_uids.end()){
 			return true;
 		}
-
+		
 		return false;
 	}
 
 
 	void Magasin::addCustomer(std::string prenom, std::string nom){
+		std::ofstream fichier;
 		int uid=rand();
 		while(checkUids(uid)==true){
 			uid=rand();
 		}
+		fichier.open("clients.txt", std::ios_base::app);
+		fichier<<uid<<" "<<prenom<<" "<<nom<<std::endl;
+		fichier.close();
 		vente::Client client(uid,nom,prenom);
 		m_uids.push_back(uid);
 		m_clients.push_back(client);
@@ -157,6 +162,7 @@ namespace vente {
 					return client.getID()==uid;
 				});
 			int index = std::distance(m_clients.begin(), it);
+
 
 			for (int i=0; i<75;i++){
 				std::cout<<"-";
@@ -442,6 +448,18 @@ namespace vente {
 			});
 		int indexClient = std::distance(m_clients.begin(), itC);
 		m_clients.at(indexClient).clearProducts();
+
+	}
+
+	void Magasin::loadCustomers(){
+		std::ifstream fichier ("clients.txt");
+		std::string prenom, nom;
+		int uid;
+		while (fichier>>uid>>prenom>>nom){
+			Client client(uid,nom,prenom);
+			m_clients.push_back(client);
+			m_uids.push_back(uid);
+		}
 
 	}
 }

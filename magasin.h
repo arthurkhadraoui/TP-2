@@ -43,6 +43,10 @@ namespace vente{
 		void updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom);
 		void clearCart(std::string prenom, std::string nom);
 
+		void loadCustomers();
+
+		void loadOrders();
+
 		
 
 
