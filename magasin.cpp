@@ -2,19 +2,21 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <fstream>
 
 namespace vente {
 	Magasin::Magasin()
 	{
 
+	void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
+
+		Produit produit(name,description,quantity,price);
+		m_products.push_back(produit);
+
 	}
 
 	std::vector<Commande> Magasin::getOrders() const{
 		return m_orders;
-	}
-
-	void Magasin::addProduct(Produit produit){
-		m_products.push_back(produit); //Ajout du produit au produits du magasin
 	}
 
 	void Magasin::updateQuantity(std::string prodname, int quantity){
@@ -114,17 +116,21 @@ namespace vente {
 
 
 	void Magasin::addCustomer(std::string prenom, std::string nom){
+		std::ofstream fichier;
 		int uid=rand();
 		while(checkUids(uid)==true){
 			uid=rand();
 		}
+		fichier.open("clients.txt", std::ios_base::app);
+		fichier<<uid<<" "<<prenom<<" "<<nom<<std::endl;
+		fichier.close();
 		vente::Client client(uid,nom,prenom);
 		m_uids.push_back(uid);
 		m_clients.push_back(client);
 	}
 
 
-	void Magasin::displayCustomers(){
+	void Magasin::displayCustomers()const {
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -161,6 +167,7 @@ namespace vente {
 					return client.getID()==uid;
 				});
 			int index = std::distance(m_clients.begin(), it);
+
 
 			for (int i=0; i<75;i++){
 				std::cout<<"-";
@@ -241,14 +248,20 @@ namespace vente {
 		}
 	}
 
-	void Magasin::switchStatuts(int orderNum, Commande::Statut s){
+	void Magasin::switchStatuts(int orderNum, int s){
 		auto it = m_orders.begin();
 		it = std::find_if(it, m_orders.end(),
 			[orderNum](const Commande order) {
 				return (order.getNumero()==orderNum);
 			});
 		int index = std::distance(m_orders.begin(), it);
-		m_orders.at(index).setStatut(s);
+		switch (s) {
+			case 0: m_orders.at(index).setStatut(Commande::Statut::Valide);break;
+			case 1: m_orders.at(index).setStatut(Commande::Statut::EnAttente);break;
+			case 2: m_orders.at(index).setStatut(Commande::Statut::Refuse);break;
+			default: break;
+		}
+
 	}
 
 	void Magasin::displayOrders(){
@@ -359,6 +372,7 @@ namespace vente {
 
 
 	void Magasin::addProductCart(std::string nproduit, std::string prenom, std::string nom){
+
 		auto itC = m_clients.begin();
 		itC = std::find_if(itC, m_clients.end(),
 			[nom,prenom](const Client client) {
@@ -374,7 +388,6 @@ namespace vente {
 		int indexproduct = std::distance(m_products.begin(), itP);
 
 		m_clients.at(indexClient).add(m_products.at(indexproduct));
-
 
 	}
 
@@ -442,4 +455,17 @@ namespace vente {
 		m_clients.at(indexClient).clearProducts();
 
 	}
+
+	void Magasin::loadCustomers(){
+		std::ifstream fichier ("clients.txt");
+		std::string prenom, nom;
+		int uid;
+		while (fichier>>uid>>prenom>>nom){
+			Client client(uid,nom,prenom);
+			m_clients.push_back(client);
+			m_uids.push_back(uid);
+		}
+
+	}
+
 }

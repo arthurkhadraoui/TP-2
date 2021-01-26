@@ -12,7 +12,7 @@ void Subject::addObserver(Observer* observer)
 
 void Subject::notify()
 {
-	for (int iObserver = 0; iObserver < observers.size(); ++iObserver)
+	for (int iObserver = 0; iObserver < int(observers.size()); ++iObserver)
 	{
 		observers[iObserver]->notify();
 	}

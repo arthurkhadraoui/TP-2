@@ -9,7 +9,7 @@
 namespace vente{
 
 	class Magasin {
-
+		
 		public:
 			//Constructeur de la classe Magasin
 			Magasin();
@@ -19,7 +19,7 @@ namespace vente{
 
 		//Fonctionnalités liées aux produits
 			//Ajoute un produit dans le stock du magasin
-			void addProduct(Produit produit);
+			void addProduct(std::string name, std::string description, int quantity, double price);
 			//Modifie la quantité d'un produit dans le stock du magasin
 			void updateQuantity(std::string prodname, int quantity);
 			//Affiche tous les produits du stock du magasin
@@ -33,7 +33,7 @@ namespace vente{
 			//Ajoute un client dans la liste des clients du magasin
 			void addCustomer(std::string prenom, std::string nom);
 			//Affiche tous les clients du magasin
-			void displayCustomers();
+			void displayCustomers() const;
 			//Affiche les information du client spécifié par son nom et prénom
 			void displayCustomer(std::string nprenom, std::string nom);
 			//Affiche les information du client spécifié par son id
@@ -64,6 +64,8 @@ namespace vente{
 			void updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom);
 			//Vide la commande d'un client spécifié par son nom et prénom
 			void clearCart(std::string prenom, std::string nom);
+			//Charge la liste des clients contenu dans un fichier de sauvegarde
+			void loadCustomers();
 
 		private:
 			//Liste des produits en stock dans le magasin

@@ -54,19 +54,19 @@ void ViewClient::display(){
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"1.Ajouter un client";
-		for (int i=0; i<73-std::string("1.Ajouter un client").length();i++){
+		for (int i=0; i<73-int(std::string("1.Ajouter un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"2.Afficher un client";
-		for (int i=0; i<73-std::string("2.Afficher un client").length();i++){
+		for (int i=0; i<73-int(std::string("2.Afficher un client").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|";
 		std::cout<<"0.Retour";
-		for (int i=0; i<73-std::string("0.Retour").length();i++){
+		for (int i=0; i<73-int(std::string("0.Retour").length());i++){
 			std::cout<<" ";
 		}
 		std::cout<<"|"<<std::endl;
@@ -79,9 +79,14 @@ void ViewClient::display(){
 		std::cin.clear();
 		std::cin >> res;
 
+		while (res!=0 && res!=1 && res!=2 && res!=3  ){
+		std::cout<<"Veuillez selectionner une option valide:"<<std::endl;
+		std::cin >> res;
+	}
+
 		switch(res){
-			case 0: controller.setScreen(0);
-			case 1: addCustomer();
-			case 2: showCustomer();
+			case 0: controller.setScreen(0); break;
+			case 1: addCustomer(); break;
+			case 2: showCustomer();break;
 		}
 }
