@@ -11,11 +11,11 @@ namespace vente{
     class Client{
 
       public :
-      //Constructeurs de client
+      //Constructeurs de la classe Client
       Client(int id);
       Client(int id, std::string name, std::string firstName);
 
-      //Accesseurs des attrbuts du client
+      //Accesseurs des attrbuts du de la classe Client
       void setName(std::string name);
       void setFirstName(std::string firstName);
 
@@ -25,7 +25,7 @@ namespace vente{
       std::vector<Produit> getProducts() const;
       std::vector<int> getProductsQuantity() const;
 
-      //Méthode d'ajout d'un produit "product" dans le panier en "quantity" quantité
+      //Méthode d'ajout d'un produit "product" dans le panier
       void add(Produit product);
       //Méthode qui vide le panier
       void clearProducts();
@@ -46,13 +46,11 @@ namespace vente{
       std::string _firstName;
       //Panier de client (liste de produit)
       std::vector<Produit> m_products;
-
+      //Quantité d'un même produit dans le panier du client
       std::vector<int> _productQuantity;
 
       //fonction d'affichage pour la surcharge d'opérateur
       std::string display() const;
-
     };
 }
-
 #endif

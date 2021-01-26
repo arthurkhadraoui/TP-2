@@ -39,34 +39,34 @@ namespace vente{
   }
 
   void Client::add(Produit product){
-    m_products.push_back(product); //Ajoute le produit au panier
-    _productQuantity.push_back(1);
+    m_products.push_back(product); //Ajout du produit au panier
+    _productQuantity.push_back(1); //Quantité du produit mise à 1 par défaut
   }
 
   void Client::clearProducts(){
     //Gestion des stocks depuis la classe Magasin
-    m_products.clear();//Vide le vector contenant le panier du client
-    _productQuantity.clear();
+    m_products.clear(); //Vide le vector contenant le panier du client
+    _productQuantity.clear(); //Réinitialise les quantités
   }
 
   void Client::modifyQuantity(Produit product, int quantity){
-    int i = 0; //Iterateur pour la position dans le panier
     //Gestion des stocks depuis la classe Magasin
+    int i = 0; //Iterateur pour la position dans le panier
     for(Produit p : getProducts()){ //Pour chaque produit du panier
-      if(p.getName().compare(product.getName()) == 0){ //Si le produit est celui à supprimer
-        _productQuantity.at(i)=quantity; //Modifie la quantité
+      if(p.getName().compare(product.getName()) == 0){ //Si le produit est celui dont on souhaite modifier la quantité
+        _productQuantity.at(i)=quantity; //On modifie la quantité
       }
       i++;
     }
   }
 
   void Client::deleteProduct(Produit product){
-    int i = 0; //Iterateur pour la position dans le panier
     //Gestion des stocks depuis la classe Magasin
+    int i = 0; //Iterateur pour la position dans le panier
     for(Produit p : getProducts()){ //Pour chaque produit du panier
       if(p.getName().compare(product.getName()) == 0){ //Si le produit est celui à supprimer
-        m_products.erase(m_products.begin() + i); //Supprime le produit du panier
-        _productQuantity.erase(_productQuantity.begin() + i);
+        m_products.erase(m_products.begin() + i); //On supprime le produit du panier
+        _productQuantity.erase(_productQuantity.begin() + i); //On réinitialise la quantité
       }
       i++;
     }
@@ -78,17 +78,15 @@ namespace vente{
   }
 
   std::string Client::display() const{
-    std::string outstring;
-    outstring += std::to_string(getID());
+    std::string outstring; //Variable de résultat
+    outstring += std::to_string(getID()); //Ajout du champs ID
     for (int i= 0;i<14 - int(std::to_string(getID()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
-    outstring += getName()+ " " +getFirstName();
+    outstring += getName()+ " " +getFirstName(); //Ajout des champs nom et prénom
     for (int i= 0;i<58 - int(getName().length()+getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
-
     return(outstring);
   }
-
 }

@@ -21,14 +21,10 @@ namespace vente{
     void setPrice(double price);
     void setQuantity(int quantity);
 
-
     std::string getName() const;
     std::string getDescription() const;
     int getQuantity() const;
     double getPrice() const;
-
-
-
 
     //Surcharge de l'opérateur << pour afficher le produit
     friend std::ostream& operator << (std::ostream &flux, const Produit& p);
@@ -45,9 +41,7 @@ namespace vente{
 
     //fonction d'affichage pour la surcharge d'opérateur
     std::string display() const;
-
   };
 std::string lastSpaces(Produit p);
 }
-
 #endif

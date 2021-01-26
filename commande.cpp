@@ -3,11 +3,11 @@
 namespace vente{
 
   Commande::Commande(int numero,Client client) : _numero(numero), _client(client), _statut(Statut::EnAttente){
-    for (int i=0;i<int(client.getProducts().size());i++){
-      m_products.push_back(client.getProducts().at(i));
-      _productQuantity.push_back(client.getProductsQuantity().at(i));
+    for (int i=0;i<int(client.getProducts().size());i++){ //Pour chauqe produit dans le panier du client
+      m_products.push_back(client.getProducts().at(i)); //On ajoute le produit à la commande
+      _productQuantity.push_back(client.getProductsQuantity().at(i)); //On ajoute la quantité à la commande
     }
-    client.clearProducts();
+    client.clearProducts(); //On vide le panier du client
   }
 
   void Commande::setStatut(Statut s){
@@ -36,27 +36,25 @@ namespace vente{
     return _productQuantity;
   }
 
-  
-
-
   std::string Commande::display() const{
-    std::string outstring;
-    outstring += std::to_string(getNumero());
+    std::string outstring; //Variable de résultat
+    outstring += std::to_string(getNumero()); //Ajout du champs Numéro
     for (int i= 0;i<12 - int(std::to_string(getNumero ()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
-    outstring += getClient().getName()+ " " + getClient().getFirstName();
+    outstring += getClient().getName()+ " " + getClient().getFirstName(); //Ajout des champs nom et prénom
     for (int i= 0;i<24 - int(getClient().getName().length()+ getClient().getFirstName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
-    outstring += _enumVal.at(getStatut());
+    outstring += _enumVal.at(getStatut()); //Ajout du statut au format string
     for (int i= 0;i<16 - int(_enumVal.at(getStatut()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
-    outstring+=getProducts().at(0).getName();
+    outstring+=getProducts().at(0).getName(); //Ajout du produit
     for (int i= 0;i<15 - int(getProducts().at(0).getName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       outstring += " ";
     }
+    //Ajout de la quantité du produit
     outstring+="(";
         outstring+= std::to_string(_productQuantity.at(0));
         outstring+=")";
@@ -65,17 +63,18 @@ namespace vente{
         }
     outstring+="|";
 
-    if(getProducts().size()>1){
+    if(getProducts().size()>1){ //Si il y a plus d'un produit dans la commande
       for (int i=1; i<int(getProducts().size());i++){
         outstring+="\n";
         outstring+="|";
         for (int j= 0;j<66 - int(getProducts().at(i).getName().length());j++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
           outstring += " ";
         }
-        outstring+=getProducts().at(i).getName();
+        outstring+=getProducts().at(i).getName(); //Ajout du nom du produit
         for (int j= 0;j<15 - int(getProducts().at(i).getName().length());j++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
          outstring += " ";
         }
+        //Ajout de la quantité du produit
         outstring+="(";
         outstring+= std::to_string(_productQuantity.at(i));
         outstring+=")";
@@ -84,8 +83,6 @@ namespace vente{
         }
         outstring+="|";
     }
-    
-
   }
   return(outstring);
 }
@@ -94,6 +91,4 @@ std::ostream& operator << (std::ostream &flux, const Commande& c){
     flux << c.display(); //Surcharge de l'opérateur
     return flux;
   }
-
-
 }

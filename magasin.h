@@ -1,54 +1,81 @@
 #ifndef MAGASIN_H
 #define MAGASIN_H
-#include <vector>
 
+#include <vector>
 #include "produit.h"
 #include "client.h"
 #include "commande.h"
 
-
 namespace vente{
+
 	class Magasin {
-	private:
-		std::vector<Produit> m_products;
-		std::vector<Client> m_clients;
-		std::vector<int> m_uids;
-		std::vector<Commande> m_orders;
-		std::vector<int> orders_num;
-	public:
-		Magasin();
-		void addProduct(Produit produit);
-		void displayAllProducts() const;
-		void displayProduct(std::string prod);
-		void updateQuantity(std::string prodname, int quantity);
-		std::vector<Commande> getOrders() const;
 
-		bool checkUids(int testnb);
-		void addCustomer(std::string prenom, std::string nom);
-		void displayCustomers();
-		void displayCustomer(std::string nprenom, std::string nom);
-		void displayCustomer(int uid);
+		public:
+			//Constructeur de la classe Magasin
+			Magasin();
 
-		void addOrder(std::string prenom, std::string nom);
-		bool checkOrderNum(int testnb);
-		void validateCommande(int orderNum);//Permet de valider une commande
-		void switchStatuts(int orderNum, Commande::Statut s);//Permet de changer le statut d'une commande
-		void displayOrders();
-		void displayOrdersFromCustomer(std::string prenom, std::string nom);
+			//Accesseur des attributs de la classe Magasin
+			std::vector<Commande> getOrders() const;
 
+		//Fonctionnalités liées aux produits
+			//Ajoute un produit dans le stock du magasin
+			void addProduct(Produit produit);
+			//Modifie la quantité d'un produit dans le stock du magasin
+			void updateQuantity(std::string prodname, int quantity);
+			//Affiche tous les produits du stock du magasin
+			void displayAllProducts() const;
+			//Affiche un produit en particulier du stock du magasin
+			void displayProduct(std::string prod);
 
-		void addProductCart(std::string nproduit, std::string prenom, std::string nom);
-		void addProductCart(std::string nproduit,int uid);
-		void removeProductCart(std::string nproduit, std::string prenom, std::string nom);
-		void updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom);
-		void clearCart(std::string prenom, std::string nom);
+		//Fonctionnalités liées aux clients
+			//Vérifie l'existance de l'id passé en paramètre
+			bool checkUids(int testnb);
+			//Ajoute un client dans la liste des clients du magasin
+			void addCustomer(std::string prenom, std::string nom);
+			//Affiche tous les clients du magasin
+			void displayCustomers();
+			//Affiche les information du client spécifié par son nom et prénom
+			void displayCustomer(std::string nprenom, std::string nom);
+			//Affiche les information du client spécifié par son id
+			void displayCustomer(int uid);
 
-		
+		//Fonctionnalités liées aux commandes
+			//Vérifie l'existance du numéro de commande passé en paramètre
+			bool checkOrderNum(int testnb);
+			//Ajoute une commande au magasin
+			void addOrder(std::string prenom, std::string nom);
+			//Valide une commande du magasin
+			void validateCommande(int orderNum);
+			//Chage le statut d'une commande du magasin
+			void switchStatuts(int orderNum, Commande::Statut s);
+			//Affiche toutes les commandes du magasin
+			void displayOrders();
+			//Affiche la commande d'un client spécifié par son nom et prénom
+			void displayOrdersFromCustomer(std::string prenom, std::string nom);
 
+		//Fonctionnalités liées aux paniers des clients
+			//Ajoute un produit à la commande du client spécifié par son nom et prénom
+			void addProductCart(std::string nproduit, std::string prenom, std::string nom);
+			//Ajoute un produit à la commande du client spécifié par son id
+			void addProductCart(std::string nproduit,int uid);
+			//Supprime un produit de la commande d'un client spécifié par son nom et prénom
+			void removeProductCart(std::string nproduit, std::string prenom, std::string nom);
+			//Modifie la quantité d'un produit dans la commande d'un client spécifié par son nom et prénom
+			void updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom);
+			//Vide la commande d'un client spécifié par son nom et prénom
+			void clearCart(std::string prenom, std::string nom);
 
+		private:
+			//Liste des produits en stock dans le magasin
+			std::vector<Produit> m_products;
+			//Liste des clients connus du magasin
+			std::vector<Client> m_clients;
+			//Liste des id des clients du magasin
+			std::vector<int> m_uids;
+			//Liste des commandes passées dans le magasin
+			std::vector<Commande> m_orders;
+			//Liste des numéros des commandes passées dans le magasin
+			std::vector<int> orders_num;
 	};
 }
-
-
-
 #endif

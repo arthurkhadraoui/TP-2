@@ -4,97 +4,103 @@
 #include <random>
 
 namespace vente {
-	Magasin::Magasin(){}
+	Magasin::Magasin()
+	{
 
-	void Magasin::addProduct(Produit produit){
-		m_products.push_back(produit);
 	}
 
 	std::vector<Commande> Magasin::getOrders() const{
 		return m_orders;
 	}
 
-	void Magasin::displayAllProducts() const {
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-		std::cout<<"|Produits";
-		for (int i=0; i<65 ;i++){
-			std::cout<<" ";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|Name             Description                       Quantity      Price   |"<<std::endl;
-
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		for(int i=0; i<int(m_products.size());i++){
-			std::cout<<"|";
-			std::cout<<m_products.at(i);
-			std::cout<<"|";
-			std::cout<<std::endl;
-		}
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-	}
-
-	void Magasin::displayProduct(std::string name){
-		auto it = m_products.begin();
-		it = std::find_if(it, m_products.end(),
-			[name](const Produit produit) {
-				return produit.getName()==name;
-			});
-		int index = std::distance(m_products.begin(), it);
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-		std::cout<<"|Details du produit";
-		for (int i=0; i<55 ;i++){
-			std::cout<<" ";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|Name             Description                       Quantity      Price   |"<<std::endl;
-
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|";
-		std::cout<<m_products.at(index);
-		std::cout<<"|";
-		std::cout<<std::endl;
-
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
+	void Magasin::addProduct(Produit produit){
+		m_products.push_back(produit); //Ajout du produit au produits du magasin
 	}
 
 	void Magasin::updateQuantity(std::string prodname, int quantity){
-		auto it = m_products.begin();
+		auto it = m_products.begin(); //Iterateur pour parcourir le vector
 		it = std::find_if(it, m_products.end(),
-			[prodname](const Produit produit) {
-				return produit.getName()==prodname;
-			});
-		int index = std::distance(m_products.begin(), it);
-		m_products.at(index).setQuantity(quantity);
+		[prodname](const Produit produit) {
+			return produit.getName() == prodname;
+		}); //Retrouve le produit souhaité
+		int index = std::distance(m_products.begin(), it); //Stock la position du produit dans la liste
+		m_products.at(index).setQuantity(quantity); //Modifie la quantité du produit dans le stock
+	}
+
+	void Magasin::displayAllProducts() const {
+		//Préparation de l'affichage
+		for (int i = 0; i < 75; i++){
+			std::cout << "-";
+		}
+		std::cout << std::endl;
+		std::cout << "|Produits";
+		for (int i = 0; i<65 ; i++){
+			std::cout << " ";
+		}
+		std::cout << "|" << std::endl;
+		std::cout << "|";
+		for (int i = 0; i < 73; i++){
+			std::cout << "-";
+		}
+		std::cout << "|" << std::endl;
+		std::cout << "|Name             Description                       Quantity      Price   |" << std::endl;
+
+		std::cout << "|";
+		for (int i = 0; i < 73; i++){
+			std::cout << "-";
+		}
+		std::cout << "|" << std::endl;
+		//Pour chaque produit du magasin
+		for(int i = 0; i < int(m_products.size()); i++){
+			std::cout << "|";
+			std::cout << m_products.at(i); //Affichage du produit
+			std::cout << "|";
+			std::cout << std::endl;
+		}
+		for (int i = 0; i < 75; i++){
+			std::cout << "-";
+		}
+		std::cout << std::endl;
+	}
+
+	void Magasin::displayProduct(std::string name){
+		auto it = m_products.begin(); //Iterateur dans le vector
+		it = std::find_if(it, m_products.end(),
+			[name](const Produit produit) {
+				return produit.getName()==name;
+			}); //récupération du produit souhaité
+		int index = std::distance(m_products.begin(), it); //Stock la position du produit dans la liste
+		//Préparation de l'affichage
+		for (int i = 0; i < 75; i++){
+			std::cout << "-";
+		}
+		std::cout << std::endl;
+		std::cout << "|Details du produit";
+		for (int i = 0; i < 55 ; i++){
+			std::cout << " ";
+		}
+		std::cout << "|" << std::endl;
+		std::cout << "|";
+		for (int i = 0; i < 73; i++){
+			std::cout << "-";
+		}
+		std::cout << "|" << std::endl;
+		std::cout << "|Name             Description                       Quantity      Price   |" << std::endl;
+
+		std::cout << "|";
+		for (int i = 0; i < 73; i++){
+			std::cout << "-";
+		}
+		std::cout << "|" << std::endl;
+		std::cout << "|";
+		std::cout << m_products.at(index); //Affichage du produit
+		std::cout << "|";
+		std::cout << std::endl;
+
+		for (int i = 0; i < 75; i++){
+			std::cout << "-";
+		}
+		std::cout << std::endl;
 	}
 
 	bool Magasin::checkUids(int testnb){
@@ -198,7 +204,7 @@ namespace vente {
 	}
 
 	void Magasin::addOrder(std::string prenom, std::string nom){
-		
+
 		int num=rand();
 		while(checkOrderNum(num)==true){
 			num=rand();
@@ -264,7 +270,7 @@ namespace vente {
 		for(int i=0;i<int(m_orders.size());i++){
 			std::cout<<"|";
 			std::cout<<m_orders.at(i);
-			
+
 			std::cout<<std::endl;
 		}
 		for (int i=0; i<75;i++){
@@ -273,7 +279,7 @@ namespace vente {
 		std::cout<<std::endl;
 	}
 
-	
+
 
 	void Magasin::displayCustomer(std::string prenom, std::string nom){
 		auto it = m_clients.begin();
@@ -298,12 +304,12 @@ namespace vente {
 		}
 		std::cout<<"|"<<std::endl;
 		std::cout<<"|ID            Full name                                                  |"<<std::endl;
-		
+
 		std::cout<<"|";
 		std::cout<<m_clients.at(index);
 		std::cout<<"|";
 		std::cout<<std::endl;
-		
+
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -341,7 +347,7 @@ namespace vente {
 		for(int i=0;i<int(ordersFromCustomer.size());i++){
 			std::cout<<"|";
 			std::cout<<ordersFromCustomer.at(i);
-			
+
 			std::cout<<std::endl;
 		}
 		for (int i=0; i<75;i++){

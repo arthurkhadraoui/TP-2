@@ -44,42 +44,38 @@ namespace vente{
   }
 
   std::string Produit::display() const{
-    //Constante pour les taille des colones
+    //Constantes pour les taille des différentes colones
     const int NAME_SIZE = 17;
     const int DESCRIPTION_SIZE = 34;
     const int QUANTITY_SIZE = 14;
 
     std::string res = ""; //Variable de résultat
 
-    res += getName(); //Ajout du champs
+    res += getName(); //Ajout du champs Nom
     for (int i= 0;i<NAME_SIZE - int(getName().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       res += " ";
     }
-    res += getDescription();
-    for (int i= 0;i<DESCRIPTION_SIZE - int(getDescription().length());i++){
+    res += getDescription(); //Ajout du champs Description
+    for (int i= 0;i<DESCRIPTION_SIZE - int(getDescription().length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       res += " ";
     }
-    res += std::to_string(getQuantity());
-    for (int i= 0;i<QUANTITY_SIZE - int(std::to_string(getQuantity()).length());i++){
+    res += std::to_string(getQuantity()); //Ajout du champs quantité au format string
+    for (int i= 0;i<QUANTITY_SIZE - int(std::to_string(getQuantity()).length());i++){ //Pour la taille de la colone moins celle du champs, on ajoute des espaces
       res += " ";
     }
 
+    //Choix du format de l'affichage du prix
     std::stringstream price;
-    price<<std::fixed<<std::setprecision(2)<<getPrice();
-    res+=price.str();
-    for (int i= 0;i<8 - int(price.str().length());i++){
+    price << std::fixed << std::setprecision(2) << getPrice();
+    res += price.str(); //Ajout du prix au format string
+    for (int i = 0;i<8 - int(price.str().length());i++){ //Ajout des espaces
       res += " ";
     }
-    
-
     return res;
   }
-
-  
 
   std::ostream& operator << (std::ostream &flux, const Produit& p){
     flux << p.display(); //Surcharge l'opérateur
     return flux;
   }
-
 }

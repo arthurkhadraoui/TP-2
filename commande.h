@@ -1,5 +1,6 @@
 #ifndef COMMANDE_H
 #define  COMMANDE_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,10 +16,11 @@ namespace vente{
       enum Statut{
         Valide, EnAttente, Refuse
       };
-      //Constructeur
+
+      //Constructeur de la classe Commande
       Commande(int numero,Client client);
 
-      //Accesseurs
+      //Accesseurs des attributs de la classe Commande
       void setStatut(Statut s);
 
       Statut getStatut() const;
@@ -26,14 +28,9 @@ namespace vente{
       int getNumero() const;
       std::vector<Produit> getProducts() const;
       std::vector<int> getProductQuantity() const;
-      
 
-      
+      //Surcharge de l'opérateur << pour afficher le produit
       friend std::ostream& operator << (std::ostream &flux, const Commande& c);
-
-			//fonction d'affichage pour la surcharge d'opérateur
-      std::string display() const;
-
 
     private:
       //Numéro de commande
@@ -42,18 +39,16 @@ namespace vente{
       Client _client;
       //Produit(s) acheté par le client
       std::vector<Produit> m_products;
-
+      //Quantité d'un même produit acheté par le client
       std::vector<int> _productQuantity;
-
       //Statut de la commande
       Statut _statut;
 
+      //Version string des statuts pour gérer l'affichage
       std::vector<std::string> _enumVal={"Valide","En Attente","Refuse"};
 
-			//Surcharge de l'opérateur << pour afficher le produit
-	    friend std::ostream& operator << (std::ostream &flux, const Produit& p);
+      //fonction d'affichage pour la surcharge d'opérateur
+      std::string display() const;
   };
-
 }
-
 #endif
