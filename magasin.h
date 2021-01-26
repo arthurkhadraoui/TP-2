@@ -47,7 +47,7 @@ namespace vente{
 			//Valide une commande du magasin
 			void validateCommande(int orderNum);
 			//Chage le statut d'une commande du magasin
-			void switchStatuts(int orderNum, Commande::Statut s);
+			void switchStatuts(int orderNum, int s);
 			//Affiche toutes les commandes du magasin
 			void displayOrders();
 			//Affiche la commande d'un client spécifié par son nom et prénom

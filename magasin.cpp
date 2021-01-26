@@ -7,23 +7,24 @@
 namespace vente {
 	Magasin::Magasin()
 	{
-
-	void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
-
-		Produit produit(name,description,quantity,price);
-		m_products.push_back(produit);
-
 	}
 
-	std::vector<Commande> Magasin::getOrders() const{
-		return m_orders;
-	}
+		void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
 
-	void Magasin::updateQuantity(std::string prodname, int quantity){
+			Produit produit(name,description,quantity,price);
+			m_products.push_back(produit);
+
+		}
+
+		std::vector<Commande> Magasin::getOrders() const{
+			return m_orders;
+		}
+
+		void Magasin::updateQuantity(std::string prodname, int quantity){
 		auto it = m_products.begin(); //Iterateur pour parcourir le vector
 		it = std::find_if(it, m_products.end(),
-		[prodname](const Produit produit) {
-			return produit.getName() == prodname;
+			[prodname](const Produit produit) {
+				return produit.getName() == prodname;
 		}); //Retrouve le produit souhaité
 		int index = std::distance(m_products.begin(), it); //Stock la position du produit dans la liste
 		m_products.at(index).setQuantity(quantity); //Modifie la quantité du produit dans le stock
@@ -156,7 +157,7 @@ namespace vente {
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
-		}
+	}
 
 
 	void Magasin::displayCustomer(int uid){
@@ -469,3 +470,5 @@ namespace vente {
 	}
 
 }
+
+
