@@ -22,8 +22,8 @@ namespace vente {
 	void Magasin::updateQuantity(std::string prodname, int quantity){
 		auto it = m_products.begin(); //Iterateur pour parcourir le vector
 		it = std::find_if(it, m_products.end(),
-		[prodname](const Produit produit) {
-			return produit.getName() == prodname;
+			[prodname](const Produit produit) {
+				return produit.getName() == prodname;
 		}); //Retrouve le produit souhaité
 		int index = std::distance(m_products.begin(), it); //Stock la position du produit dans la liste
 		m_products.at(index).setQuantity(quantity); //Modifie la quantité du produit dans le stock
@@ -154,7 +154,42 @@ namespace vente {
 			std::cout<<"-";
 		}
 		std::cout<<std::endl;
+	}
+
+	void Magasin::displayCustomer(std::string prenom, std::string nom){
+		auto it = m_clients.begin(); //Iterateur pour le vecteur
+		it = std::find_if(it, m_clients.end(),
+			[nom,prenom](const Client client) {
+				return (client.getName()==nom && client.getFirstName()==prenom);
+			});
+		int index = std::distance(m_clients.begin(), it); //Position du client dans la liste
+
+		for (int i=0; i<75;i++){
+			std::cout<<"-";
 		}
+		std::cout<<std::endl;
+		std::cout<<"|Client";
+		for (int i=0; i<67 ;i++){
+			std::cout<<" ";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|";
+		for (int i=0; i<73;i++){
+			std::cout<<"-";
+		}
+		std::cout<<"|"<<std::endl;
+		std::cout<<"|ID            Full name                                                  |"<<std::endl;
+
+		std::cout<<"|";
+		std::cout<<m_clients.at(index); //Affichage du client
+		std::cout<<"|";
+		std::cout<<std::endl;
+
+		for (int i=0; i<75;i++){
+			std::cout<<"-";
+		}
+		std::cout<<std::endl;
+	}
 
 	void Magasin::displayCustomer(int uid){
 		if (checkUids(uid)==true){ //Création de l'iterateur du vector
@@ -274,7 +309,7 @@ namespace vente {
 		std::cout<<"|Numero      Client                   Statut          Produits            |"<<std::endl;
 		for(int i=0;i<int(m_orders.size());i++){
 			std::cout<<"|";
-			std::cout<<m_orders.at(i);
+			std::cout<<m_orders.at(i); //Affichage de la commande
 
 			std::cout<<std::endl;
 		}
@@ -284,56 +319,19 @@ namespace vente {
 		std::cout<<std::endl;
 	}
 
-
-
-	void Magasin::displayCustomer(std::string prenom, std::string nom){
-		auto it = m_clients.begin();
-		it = std::find_if(it, m_clients.end(),
-			[nom,prenom](const Client client) {
-				return (client.getName()==nom && client.getFirstName()==prenom);
-			});
-		int index = std::distance(m_clients.begin(), it);
-
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-		std::cout<<"|Client";
-		for (int i=0; i<67 ;i++){
-			std::cout<<" ";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|";
-		for (int i=0; i<73;i++){
-			std::cout<<"-";
-		}
-		std::cout<<"|"<<std::endl;
-		std::cout<<"|ID            Full name                                                  |"<<std::endl;
-
-		std::cout<<"|";
-		std::cout<<m_clients.at(index);
-		std::cout<<"|";
-		std::cout<<std::endl;
-
-		for (int i=0; i<75;i++){
-			std::cout<<"-";
-		}
-		std::cout<<std::endl;
-	}
-
 	void Magasin::displayOrdersFromCustomer(std::string prenom, std::string nom){
-		std::vector<Commande> ordersFromCustomer;
+		std::vector<Commande> ordersFromCustomer; //Liste des commandes d'un client
 		auto it = m_orders.begin();
-		while(it!=m_orders.end()){
+		while(it!=m_orders.end()){ //Recherche toutes les commandes du clients
 			it = std::find_if(it, m_orders.end(),
 				[nom,prenom](const Commande order) {
 					return (order.getClient().getName()==nom && order.getClient().getFirstName()==prenom);
 				});
 			int index = std::distance(m_orders.begin(), it);
-			ordersFromCustomer.push_back(m_orders.at(index));
+			ordersFromCustomer.push_back(m_orders.at(index)); //Ajoute les commandes à la liste
 			it++;
 		}
-
+		//Préparation de l'affichage
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -351,7 +349,7 @@ namespace vente {
 		std::cout<<"|Numero      Client                   Statut          Produits            |"<<std::endl;
 		for(int i=0;i<int(ordersFromCustomer.size());i++){
 			std::cout<<"|";
-			std::cout<<ordersFromCustomer.at(i);
+			std::cout<<ordersFromCustomer.at(i); //Affichage des commandes de l'utilisateur
 
 			std::cout<<std::endl;
 		}
@@ -361,103 +359,95 @@ namespace vente {
 		std::cout<<std::endl;
 	}
 
-
-
 	void Magasin::addProductCart(std::string nproduit, std::string prenom, std::string nom){
-
-		auto itC = m_clients.begin();
-		itC = std::find_if(itC, m_clients.end(),
+		auto itC = m_clients.begin(); //Iterator du vector client
+		itC = std::find_if(itC, m_clients.end(), //Récupération du client
 			[nom,prenom](const Client client) {
 				return (client.getName()==nom && client.getFirstName()==prenom);
 			});
-		int indexClient = std::distance(m_clients.begin(), itC);
+		int indexClient = std::distance(m_clients.begin(), itC); //Position du client dans la liste
 
-		auto itP = m_products.begin();
-		itP = std::find_if(itP, m_products.end(),
+		auto itP = m_products.begin(); //Iterator du vector produit
+		itP = std::find_if(itP, m_products.end(), //Récupération du produit
 			[nproduit](const Produit produit) {
 				return produit.getName()==nproduit;
 			});
-		int indexproduct = std::distance(m_products.begin(), itP);
+		int indexproduct = std::distance(m_products.begin(), itP); //Position du produit dans le panier
 
-		m_clients.at(indexClient).add(m_products.at(indexproduct));
-
+		m_clients.at(indexClient).add(m_products.at(indexproduct)); //Ajout du produit à la commande du client
 	}
 
 	void Magasin::addProductCart(std::string nproduit,int uid){
-		auto itC = m_clients.begin();
-		itC = std::find_if(itC, m_clients.end(),
+		auto itC = m_clients.begin(); //Iterator du vector client
+		itC = std::find_if(itC, m_clients.end(), //Récupération du client
 			[uid](const Client client) {
 				return client.getID()==uid;
 			});
-		int indexC = std::distance(m_clients.begin(), itC);
+		int indexC = std::distance(m_clients.begin(), itC); //Position du client dans la liste
 
-		auto itP = m_products.begin();
-		itP = std::find_if(itP, m_products.end(),
+		auto itP = m_products.begin(); //Iterator du vector produit
+		itP = std::find_if(itP, m_products.end(), //Récupération du produit
 			[nproduit](const Produit produit) {
 				return produit.getName()==nproduit;
 			});
-		int indexproduct = std::distance(m_products.begin(), itP);
+		int indexproduct = std::distance(m_products.begin(), itP); //Position du produit dans la liste
 
-		m_clients.at(indexC).add(m_products.at(indexproduct));
-
-
+		m_clients.at(indexC).add(m_products.at(indexproduct)); //Ajout du produit à la commande du client
 	}
+
 	void Magasin::updateProductQuantityCart(std::string nproduit,int quantity ,std::string prenom, std::string nom){
-		auto itC = m_clients.begin();
-		itC = std::find_if(itC, m_clients.end(),
+		auto itC = m_clients.begin(); //Iterator du client
+		itC = std::find_if(itC, m_clients.end(), //récupération du client
 			[nom,prenom](const Client client) {
 				return (client.getName()==nom && client.getFirstName()==prenom);
 			});
-		int indexClient = std::distance(m_clients.begin(), itC);
+		int indexClient = std::distance(m_clients.begin(), itC); //Position du client dans la liste
 
-		auto itP = m_products.begin();
-		itP = std::find_if(itP, m_products.end(),
+		auto itP = m_products.begin(); //Iterator du vector produit
+		itP = std::find_if(itP, m_products.end(), //Récupération du produit
 			[nproduit](const Produit produit) {
 				return produit.getName()==nproduit;
 			});
-		int indexproduct = std::distance(m_products.begin(), itP);
-		m_clients.at(indexClient).modifyQuantity(m_products.at(indexproduct),quantity);
-
+		int indexproduct = std::distance(m_products.begin(), itP); //Position du produit dans la liste
+		m_clients.at(indexClient).modifyQuantity(m_products.at(indexproduct),quantity); //Mise à jour de la quantité du produit dans la commande
 	}
 
 	void Magasin::removeProductCart(std::string nproduit, std::string prenom, std::string nom){
-		auto itC = m_clients.begin();
-		itC = std::find_if(itC, m_clients.end(),
+		auto itC = m_clients.begin(); //Iterator du client
+		itC = std::find_if(itC, m_clients.end(), //Récupération du client
 			[nom,prenom](const Client client) {
 				return (client.getName()==nom && client.getFirstName()==prenom);
 			});
-		int indexClient = std::distance(m_clients.begin(), itC);
+		int indexClient = std::distance(m_clients.begin(), itC); //Position du client dans la liste
 
-		auto itP = m_products.begin();
-		itP = std::find_if(itP, m_products.end(),
+		auto itP = m_products.begin(); //Iterator du vector produit
+		itP = std::find_if(itP, m_products.end(), //Récupération du produit
 			[nproduit](const Produit produit) {
 				return produit.getName()==nproduit;
 			});
-		int indexproduct = std::distance(m_products.begin(), itP);
-		m_clients.at(indexClient).deleteProduct(m_products.at(indexproduct));
+		int indexproduct = std::distance(m_products.begin(), itP);  //Position du produit dans la liste
+		m_clients.at(indexClient).deleteProduct(m_products.at(indexproduct)); //Suppression du produit dans la commande
 	}
 
 	void Magasin::clearCart(std::string prenom, std::string nom){
-		auto itC = m_clients.begin();
-		itC = std::find_if(itC, m_clients.end(),
+		auto itC = m_clients.begin(); //Iterator du client
+		itC = std::find_if(itC, m_clients.end(), //Récupération du client
 			[nom,prenom](const Client client) {
 				return (client.getName()==nom && client.getFirstName()==prenom);
 			});
-		int indexClient = std::distance(m_clients.begin(), itC);
-		m_clients.at(indexClient).clearProducts();
-
+		int indexClient = std::distance(m_clients.begin(), itC); //Position du produit dans la liste
+		m_clients.at(indexClient).clearProducts(); //Suppression de tout les produits de la commande
 	}
 
 	void Magasin::loadCustomers(){
-		std::ifstream fichier ("clients.txt");
+		std::ifstream fichier ("clients.txt"); //Chargement du fichiers de sauvegarde des clients
 		std::string prenom, nom;
 		int uid;
-		while (fichier>>uid>>prenom>>nom){
+		while (fichier>>uid>>prenom>>nom){ //Ajout des données de chaque client dans la liste des clients
 			Client client(uid,nom,prenom);
 			m_clients.push_back(client);
 			m_uids.push_back(uid);
 		}
-
 	}
 
 }
