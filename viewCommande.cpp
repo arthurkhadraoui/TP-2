@@ -18,7 +18,7 @@ void ViewCommande::addOrder(){
 	std::string nom;
 	std::cin>>nom;
 	_magasin.vente::Magasin::addOrder(prenom,nom); //Ajout de la commande à la liste des commandes
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewCommande::changeStatus(){
@@ -56,7 +56,7 @@ void ViewCommande::changeStatus(){
 	//Choix du statut voulus
 	std::cin>>statut;
 	_magasin.vente::Magasin::switchStatuts(num,statut); //Mise à jour du statut
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewCommande::validateOrder(){
@@ -65,7 +65,7 @@ void ViewCommande::validateOrder(){
 	int num;
 	std::cin>>num;
 	_magasin.vente::Magasin::validateCommande(num); //Validation de la commande
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewCommande::displayFromCustomer(){
@@ -77,7 +77,7 @@ void ViewCommande::displayFromCustomer(){
 	std::string nom;
 	std::cin>>nom;
 	_magasin.vente::Magasin::displayOrdersFromCustomer(prenom,nom); //Affichage des commandes du client
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewCommande::display(){

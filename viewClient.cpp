@@ -20,7 +20,7 @@ void ViewClient::addCustomer(){
 	std::cin>>nom;
 	_magasin.vente::Magasin::addCustomer(prenom,nom); //Ajout du client à la liste des clients du magasin
 	clear(); //Vide la fenêtre
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewClient::showCustomer(){
@@ -29,7 +29,7 @@ void ViewClient::showCustomer(){
 	int id;
 	std::cin>>id;
 	_magasin.vente::Magasin::displayCustomer(id); //Affiche le client choisis
-	notify(); //Met à jour le MVC
+	notify(); //Mets à jour le MVC
 }
 
 void ViewClient::display(){

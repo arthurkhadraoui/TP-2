@@ -12,7 +12,7 @@ public:
 	//Constructeur de la classe viewCommande
 	ViewCommande(Controller& _controller,vente::Magasin& magasin);
 
-	//Met à jour le MVC
+	//Mets à jour le MVC
 	virtual void notify();
 	//Affiche le menu commande
 	virtual void display();
