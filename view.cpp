@@ -1,15 +1,14 @@
 #include "view.h"
 #include <cstdlib>
 
-View::View()
-{
+View::View(){
+
 }
 
-void View::clear() const
-{
-	//system("CLS");
+void View::clear() const{
+	system("CLS"); //Utilise la commande clear du système
 }
 
-void View::display() const
-{
+void View::display() const{
+
 }

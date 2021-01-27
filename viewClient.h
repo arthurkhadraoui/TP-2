@@ -1,25 +1,30 @@
 #ifndef VIEWCLIENT_H
 #define VIEWCLIENT_H
+
 #include "observer.h"
 #include "view.h"
 #include "controller.h"
 #include "magasin.h"
-class ViewClient: public View
-{
-private:
-Controller& controller;
-vente::Magasin& _magasin;
 
-public:
-	
-	ViewClient(Controller& _controller,vente::Magasin& magasin);
+class ViewClient: public View{
 
-	virtual void notify();
+	public:
+		//Constructeur de la classe viewClient
+		ViewClient(Controller& _controller,vente::Magasin& magasin);
 
-	virtual void display();
+		//Mets à jour le MVC
+		virtual void notify();
+		//Affiche le menu client
+		virtual void display();
+		//Ajout d'un utilisateur
+		virtual void addCustomer();
+		//Affichage des utilisateur 
+		virtual void showCustomer();
 
-	virtual void addCustomer();
-
-	virtual void showCustomer();
+	private:
+		//Controller du menu client
+		Controller& controller;
+		//Instance du magasin
+		vente::Magasin& _magasin;
 };
 #endif
