@@ -13,6 +13,7 @@ class Application{
 	public:
 		//Constructeur de la classe Application
 		Application();
+		
 		//Lance une application en chargeant les clients et en lançant le MVC
 		void run();
 

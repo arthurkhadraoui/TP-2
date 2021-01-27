@@ -1,16 +1,21 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
+
 #include "subject.h"
 
-class Controller: public Subject
-{
-private:
-	int currentScreen;
+class Controller: public Subject{
 
+	public :
+		//Constructeur de la classe Controller
+		Controller();
 
-public:
-	Controller();
-	void setScreen(const int& value);
-	int getCurrentScreen();
+		//Accesseurs de la classe Controller
+		int getCurrentScreen();
+		
+		void setScreen(const int& value);
+
+	private :
+		//Ecran actuellement utilisé par l'application
+		int currentScreen;
 };
 #endif
