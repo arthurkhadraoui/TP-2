@@ -10,7 +10,7 @@ LDFLAGS    =
 SRCS       = commande.cpp produit.cpp client.cpp magasin.cpp app.cpp application.cpp controller.cpp observer.cpp subject.cpp view.cpp viewClient.cpp viewMenu.cpp viewProduit.cpp viewCommande.cpp
 OBJS       = $(SRCS:.cpp=.o)
 # Replace your_app with the name you want to give to your executable file
-TARGET     = tp2.exe
+TARGET     = tp2
 DEPS	   = $(OBJS:.o=.d)
 
 all: $(TARGET)
