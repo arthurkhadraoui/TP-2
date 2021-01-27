@@ -7,7 +7,7 @@ View::View()
 
 void View::clear() const
 {
-	system("CLS");
+	//system("CLS");
 }
 
 void View::display() const
