@@ -10,7 +10,7 @@ using vente::Client;
 int main()
 {
 	srand ( time(NULL) );
-	Application app;
-	app.run();
-	
+	Application app; //Création de l'application
+	app.run(); //Lancement de l'application
+
 }

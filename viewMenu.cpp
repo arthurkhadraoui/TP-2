@@ -22,12 +22,12 @@ void ViewMenu::display()
 {
 	clear();
 	std::cout<<R"(
-    ______                 _____ __                
-   / ____/___ ________  __/ ___// /_____  ________ 
+    ______                 _____ __
+   / ____/___ ________  __/ ___// /_____  ________
   / __/ / __ `/ ___/ / / /\__ \/ __/ __ \/ ___/ _ \
  / /___/ /_/ (__  ) /_/ /___/ / /_/ /_/ / /  /  __/
-/_____/\__,_/____/\__, //____/\__/\____/_/   \___/ 
-                 /____/                            
+/_____/\__,_/____/\__, //____/\__/\____/_/   \___/
+                 /____/
      )";
      std::cout<<std::endl;
 	for (int i=0; i<75;i++){
@@ -75,7 +75,7 @@ void ViewMenu::display()
 	int res;
 	std::cin.clear();
 	std::cin >> res;
-	
+
 	if (res==1 ||res==2||res==3){
 		clear();
 		controller.setScreen(res);
@@ -83,7 +83,7 @@ void ViewMenu::display()
 	else if (res==0){
 		exit(0);
 	}
-	
+
 	else {
 		while (res !=0 && res !=1 && res !=2 && res !=3){
 			std::cout<<"Veuillez saisir une option valide:"<<std::endl;
@@ -93,6 +93,6 @@ void ViewMenu::display()
 	}
 
 	clear();
-	
+
 	controller.setScreen(0);
 }

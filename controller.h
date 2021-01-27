@@ -1,6 +1,6 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
-#include "Subject.h"
+#include "subject.h"
 
 class Controller: public Subject
 {

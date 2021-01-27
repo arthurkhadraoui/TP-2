@@ -1,7 +1,7 @@
 #ifndef SUBJECT_H
 #define SUBJECT_H
 #include <vector>
-#include "Observer.h"
+#include "observer.h"
 class Subject
 {
 private:
