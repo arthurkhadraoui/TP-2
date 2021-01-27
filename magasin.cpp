@@ -5,18 +5,18 @@
 #include <fstream>
 
 namespace vente {
-	Magasin::Magasin()
-	{
 
-	void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
-
-		Produit produit(name,description,quantity,price);
-		m_products.push_back(produit);
+	Magasin::Magasin(){
 
 	}
 
 	std::vector<Commande> Magasin::getOrders() const{
 		return m_orders;
+	}
+
+	void Magasin::addProduct(std::string name, std::string description, int quantity, double price){
+		Produit produit(name,description,quantity,price);//Création du produit à partir des données
+		m_products.push_back(produit);//Ajout du produit au stock
 	}
 
 	void Magasin::updateQuantity(std::string prodname, int quantity){
@@ -107,30 +107,28 @@ namespace vente {
 
 	bool Magasin::checkUids(int testnb){
 		auto it = std::find(m_uids.begin(), m_uids.end(), testnb);
-		if (it != m_uids.end()){
+		if (it != m_uids.end()){ //Si l'id existe retourne true
 			return true;
 		}
-
 		return false;
 	}
 
-
 	void Magasin::addCustomer(std::string prenom, std::string nom){
 		std::ofstream fichier;
-		int uid=rand();
-		while(checkUids(uid)==true){
+		int uid=rand(); //Génère l'ID de l'utilisateur
+		while(checkUids(uid)==true){ //Vérifie son unicité
 			uid=rand();
 		}
-		fichier.open("clients.txt", std::ios_base::app);
+		fichier.open("clients.txt", std::ios_base::app); //Ouvre le fichier pour enregistrer les clients
 		fichier<<uid<<" "<<prenom<<" "<<nom<<std::endl;
-		fichier.close();
-		vente::Client client(uid,nom,prenom);
-		m_uids.push_back(uid);
-		m_clients.push_back(client);
+		fichier.close(); //Referme le fichier
+		vente::Client client(uid,nom,prenom);//Créer le client en fonction des informations
+		m_uids.push_back(uid); //Ajout de l'ID à la liste des ID
+		m_clients.push_back(client); //Ajout du client à la liste des clients
 	}
 
-
 	void Magasin::displayCustomers()const {
+		//Préparation de l'affichage
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
@@ -148,7 +146,7 @@ namespace vente {
 		std::cout<<"|ID            Full name                                                  |"<<std::endl;
 		for(int i=0; i<int(m_clients.size());i++){
 			std::cout<<"|";
-			std::cout<<m_clients.at(i);
+			std::cout<<m_clients.at(i); //Afichage du client
 			std::cout<<"|";
 			std::cout<<std::endl;
 		}
@@ -158,17 +156,15 @@ namespace vente {
 		std::cout<<std::endl;
 		}
 
-
 	void Magasin::displayCustomer(int uid){
-		if (checkUids(uid)==true){
+		if (checkUids(uid)==true){ //Création de l'iterateur du vector
 			auto it = m_clients.begin();
 			it = std::find_if(it, m_clients.end(),
 				[uid](const Client client) {
 					return client.getID()==uid;
 				});
-			int index = std::distance(m_clients.begin(), it);
-
-
+			int index = std::distance(m_clients.begin(), it); //Récupère la position du client
+			//Préparation de l'affichage
 			for (int i=0; i<75;i++){
 				std::cout<<"-";
 			}
@@ -184,58 +180,53 @@ namespace vente {
 			}
 			std::cout<<"|"<<std::endl;
 			std::cout<<"|ID            Full name                                                  |"<<std::endl;
-
 			std::cout<<"|";
-			std::cout<<m_clients.at(index);
+			std::cout<<m_clients.at(index); //Affichage du client
 			std::cout<<"|";
 			std::cout<<std::endl;
-
 			for (int i=0; i<75;i++){
 				std::cout<<"-";
 			}
 			std::cout<<std::endl;
 		}
-
 		else{
-			std::cout<<"Client non trouve!"<<std::endl;
+			std::cout<<"Client non trouve!"<<std::endl; //Message d'erreur si le client demandé n'existe pas
 		}
 	}
 
 	bool Magasin::checkOrderNum(int testnb){
 		auto it = std::find(orders_num.begin(), orders_num.end(), testnb);
-		if (it != orders_num.end()){
+		if (it != orders_num.end()){ //Vérifie si le numéro de commande existe
 			return true;
 		}
-
 		return false;
 	}
 
 	void Magasin::addOrder(std::string prenom, std::string nom){
-
-		int num=rand();
-		while(checkOrderNum(num)==true){
+		int num=rand(); //Génère le numéro de commande
+		while(checkOrderNum(num)==true){ //Vérifie son unicité
 			num=rand();
 		}
-		auto it = m_clients.begin();
+		auto it = m_clients.begin(); //Recherche du clients
 		it = std::find_if(it, m_clients.end(),
 			[nom,prenom](const Client client) {
 				return (client.getName()==nom && client.getFirstName()==prenom);
 			});
-		int index = std::distance(m_clients.begin(), it);
-		Commande order(num,m_clients.at(index));
-		m_orders.push_back(order);
-		clearCart(prenom,nom);
+		int index = std::distance(m_clients.begin(), it); //Position du client dans la lsite des clients
+		Commande order(num,m_clients.at(index)); //Création de la commande
+		m_orders.push_back(order); //Ajoute la commande
+		clearCart(prenom,nom); //Vide le panier du client une fois le bon de commande fait
 	}
 
 	void Magasin::validateCommande(int orderNum){
-		auto it = m_orders.begin();
+		auto it = m_orders.begin(); //Retrouve la commande
 		it = std::find_if(it, m_orders.end(),
 			[orderNum](const Commande order) {
 				return (order.getNumero()==orderNum);
 			});
-		int index = std::distance(m_orders.begin(), it);
-		m_orders.at(index).setStatut(Commande::Statut::Valide);
-		for (int i=0;i<int(m_orders.at(index).getProducts().size());i++){
+		int index = std::distance(m_orders.begin(), it); //Position de la commande dans la liste
+		m_orders.at(index).setStatut(Commande::Statut::Valide); //Change le statut de la commande pour la validé
+		for (int i=0;i<int(m_orders.at(index).getProducts().size());i++){ //Boucle qui retire la quantité de chaque produit dans le stock
 			std::string name = m_orders.at(index).getProducts().at(i).getName();
 			auto itP = m_products.begin();
 			itP = std::find_if(itP, m_products.end(),
@@ -244,18 +235,18 @@ namespace vente {
 				});
 			int indexP = std::distance(m_products.begin(), itP);
 			int less =(m_products.at(indexP).getQuantity())-(m_orders.at(index).getProductQuantity().at(indexP));
-			m_products.at(indexP).setQuantity(less);
+			m_products.at(indexP).setQuantity(less); //Retire la quantité du stock
 		}
 	}
 
 	void Magasin::switchStatuts(int orderNum, int s){
-		auto it = m_orders.begin();
+		auto it = m_orders.begin(); //Récupère la commande
 		it = std::find_if(it, m_orders.end(),
 			[orderNum](const Commande order) {
 				return (order.getNumero()==orderNum);
 			});
-		int index = std::distance(m_orders.begin(), it);
-		switch (s) {
+		int index = std::distance(m_orders.begin(), it); //Position de la commande dans la liste
+		switch (s) { //Change le statut par celui souhaité
 			case 0: m_orders.at(index).setStatut(Commande::Statut::Valide);break;
 			case 1: m_orders.at(index).setStatut(Commande::Statut::EnAttente);break;
 			case 2: m_orders.at(index).setStatut(Commande::Statut::Refuse);break;
@@ -265,6 +256,7 @@ namespace vente {
 	}
 
 	void Magasin::displayOrders(){
+		//Préparation de l'affichage
 		for (int i=0; i<75;i++){
 			std::cout<<"-";
 		}
